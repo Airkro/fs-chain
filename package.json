@@ -1,0 +1,46 @@
+{
+  "private": true,
+  "name": "fs-chain-dev",
+  "version": "0.0.0",
+  "license": "UNLICENSED",
+  "scripts": {
+    "format": "nice-move lint",
+    "test": "ava --verbose"
+  },
+  "workspaces": [
+    "package"
+  ],
+  "devDependencies": {
+    "@nice-move/cli": "^0.3.6",
+    "@nice-move/eslint-config-base": "^0.2.13",
+    "@nice-move/prettier-config": "^0.2.1",
+    "ava": "^3.8.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-ava": "^10.3.0",
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5"
+  },
+  "bk": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "packageDir": []
+      }
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "@nice-move/eslint-config-base",
+      "plugin:ava/recommended"
+    ],
+    "rules": {
+      "ava/no-ignored-test-files": "off"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "nice-move lint"
+    }
+  },
+  "prettier": "@nice-move/prettier-config"
+}

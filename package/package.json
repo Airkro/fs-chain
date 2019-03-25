@@ -1,0 +1,17 @@
+{
+  "name": "fs-chain",
+  "version": "0.2.0",
+  "license": "MIT",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "fs-extra": "^9.0.0",
+    "kleur": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=10"
+  }
+}
