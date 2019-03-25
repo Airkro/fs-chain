@@ -1,8 +1,8 @@
 const { readFileSync, outputFileSync } = require("fs-extra");
 
 module.exports = class FsChain {
-  constructor(name = "fs-chain") {
-    this.name = name;
+  constructor(mark = "fs-chain") {
+    this.mark = mark;
     this.data = "";
     return this;
   }
@@ -22,8 +22,8 @@ module.exports = class FsChain {
     return this;
   }
 
-  target(outpath = this.src) {
+  output(outpath = this.src) {
     outputFileSync(outpath, this.data);
-    console.log(this.name + ": " + this.msg + ".");
+    console.log(this.mark + ": " + this.msg + ".");
   }
 };
