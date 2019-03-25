@@ -1,0 +1,61 @@
+{
+  "name": "fs-chain",
+  "version": "2.0.0",
+  "description": "A file I/O tool chain",
+  "license": "MIT",
+  "author": {
+    "name": "Eric Chen",
+    "email": "airkro@qq.com"
+  },
+  "homepage": "https://github.com/airkro/fs-chain",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/airkro/fs-chain.git"
+  },
+  "bugs": {
+    "url": "https://github.com/airkro/fs-chain/issues"
+  },
+  "main": "index.cjs",
+  "files": [],
+  "scripts": {
+    "format": "nice-move lint",
+    "prepublishOnly": "nice-move lint && ava --verbose --fail-fast",
+    "test": "ava --verbose --fail-fast"
+  },
+  "dependencies": {
+    "fs-extra": "^9.0.1",
+    "kleur": "^4.1.3"
+  },
+  "devDependencies": {
+    "@nice-move/cli": "^0.5.14",
+    "@nice-move/commitlint-config": "^0.0.0",
+    "@nice-move/eslint-config-base": "^0.5.14",
+    "@nice-move/prettier-config": "^0.3.5",
+    "ava": "^3.15.0",
+    "commitlint": "^11.0.0",
+    "eslint": "^7.17.0",
+    "eslint-plugin-ava": "^11.0.0",
+    "garou": "^0.1.10",
+    "husky": "^4.3.7",
+    "prettier": "^2.2.1"
+  },
+  "engines": {
+    "node": "^12 || ^14"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "commitlint": {
+    "extends": "@nice-move/commitlint-config"
+  },
+  "eslintConfig": {
+    "extends": "@nice-move/eslint-config-base"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "nice-move lint && ava --verbose --fail-fast",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "prettier": "@nice-move/prettier-config"
+}
