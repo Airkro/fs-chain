@@ -5,7 +5,7 @@ const {
   outputFileSync,
   outputJsonSync,
 } = require('fs-extra');
-const { cyan } = require('kleur');
+const { cyan } = require('kleur/colors');
 
 function resolvePath(moduleId) {
   if (isAbsolute(moduleId)) {
@@ -23,7 +23,7 @@ function Creator({ init, read, write }) {
   return class Chain {
     constructor(title) {
       if (title) {
-        console.log(cyan`Chain task:`, title);
+        console.log(cyan('Chain task:'), title);
       }
       this.data = init;
       return this;

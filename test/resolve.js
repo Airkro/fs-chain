@@ -1,8 +1,7 @@
 const test = require('ava');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { readFileSync, removeSync } = require('fs-extra');
-// eslint-disable-next-line import/no-extraneous-dependencies
-const { Text: Chain } = require('fs-chain');
+
+const { Text: Chain } = require('..');
 
 function read(path) {
   return readFileSync(path, { encoding: 'utf-8' });

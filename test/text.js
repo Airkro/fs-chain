@@ -1,8 +1,7 @@
 const test = require('ava');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { readFileSync: rfs, removeSync } = require('fs-extra');
-// eslint-disable-next-line import/no-extraneous-dependencies
-const { Text: Chain } = require('fs-chain');
+
+const { Text: Chain } = require('..');
 
 const initFile = './temp/init.txt';
 const newFile = './temp/new.txt';

@@ -1,8 +1,7 @@
 const test = require('ava');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { readJsonSync: read, removeSync } = require('fs-extra');
-// eslint-disable-next-line import/no-extraneous-dependencies
-const { Json: Chain } = require('fs-chain');
+
+const { Json: Chain } = require('..');
 
 const initFile = './temp/init.json';
 const newFile = './temp/new.json';
