@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file */
+
 const { resolve, isAbsolute } = require('path');
 const {
   readFileSync,
@@ -17,6 +19,24 @@ function resolvePath(moduleId) {
   }
 
   return require.resolve(moduleId);
+}
+
+class Fake {
+  source() {
+    return this;
+  }
+
+  cutout() {
+    return this;
+  }
+
+  handle() {
+    return this;
+  }
+
+  output() {
+    return this;
+  }
 }
 
 function Creator({ init, read, write }) {
@@ -44,6 +64,10 @@ function Creator({ init, read, write }) {
       }
 
       return this;
+    }
+
+    cutout(func) {
+      return func(this.data) ? new Fake() : this;
     }
 
     handle(transform) {
