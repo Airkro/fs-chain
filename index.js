@@ -14,7 +14,7 @@ function resolvePath(moduleId) {
     return moduleId;
   }
 
-  if (moduleId.startsWith('.')) {
+  if (moduleId.startsWith('./')) {
     return resolve(process.cwd(), moduleId);
   }
 

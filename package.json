@@ -1,6 +1,6 @@
 {
   "name": "fs-chain",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -32,7 +32,7 @@
     "@nice-move/prettier-config": "^0.2.4",
     "ava": "^3.10.1",
     "eslint": "^6.8.0",
-    "eslint-plugin-ava": "^10.4.0",
+    "eslint-plugin-ava": "^10.5.0",
     "husky": "^4.2.5",
     "prettier": "^2.0.5"
   },
