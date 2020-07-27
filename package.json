@@ -1,6 +1,6 @@
 {
   "name": "fs-chain",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -27,7 +27,7 @@
     "kleur": "^4.0.2"
   },
   "devDependencies": {
-    "@nice-move/cli": "^0.3.11",
+    "@nice-move/cli": "^0.4.0",
     "@nice-move/eslint-config-base": "^0.3.3",
     "@nice-move/prettier-config": "^0.2.4",
     "ava": "^3.10.1",

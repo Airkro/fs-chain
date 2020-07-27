@@ -78,9 +78,10 @@ function Creator({ init, read, write }) {
       return this;
     }
 
-    output(outputPath = this.filePath) {
-      if (outputPath) {
-        write(outputPath, this.data);
+    output(outputPath) {
+      const final = outputPath ? resolve(outputPath) : this.filePath;
+      if (final) {
+        write(final, this.data);
         return this;
       }
       throw new Error('outputPath cannot be empty');
