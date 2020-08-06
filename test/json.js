@@ -42,3 +42,12 @@ test('transfer', (t) => {
   const result = read(newFile);
   t.deepEqual(result, convert(changedData));
 });
+
+test('pretty', (t) => {
+  new Chain()
+    .handle(() => initData)
+    .config({ pretty: true })
+    .output(initFile);
+  const result = read(initFile);
+  t.deepEqual(result, initData);
+});

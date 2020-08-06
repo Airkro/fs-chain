@@ -37,6 +37,10 @@ class Fake {
   output() {
     return this;
   }
+
+  config() {
+    return this;
+  }
 }
 
 function Creator({ init, read, write }) {
@@ -78,10 +82,17 @@ function Creator({ init, read, write }) {
       return this;
     }
 
+    config(option) {
+      if (option !== undefined) {
+        this.option = option;
+      }
+      return this;
+    }
+
     output(outputPath) {
       const final = outputPath ? resolve(outputPath) : this.filePath;
       if (final) {
-        write(final, this.data);
+        write(final, this.data, this.option);
         return this;
       }
       throw new Error('outputPath cannot be empty');
@@ -104,8 +115,12 @@ const Json = Creator({
   read(file) {
     return readJsonSync(file);
   },
-  write(file, data) {
-    return outputJsonSync(file, data);
+  write(file, data, { pretty } = {}) {
+    return outputJsonSync(
+      file,
+      data,
+      pretty ? { spaces: 2, EOL: '\r', replacer: null } : undefined,
+    );
   },
 });
 
