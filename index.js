@@ -110,18 +110,36 @@ const Text = Creator({
   },
 });
 
+const jsonOption = { spaces: 2, EOL: '\r', replacer: null };
+
 const Json = Creator({
   init: null,
   read(file) {
     return readJsonSync(file);
   },
-  write(file, data, { pretty } = {}) {
-    return outputJsonSync(
-      file,
-      data,
-      pretty ? { spaces: 2, EOL: '\r', replacer: null } : undefined,
-    );
+  write(file, data, { pretty = false } = {}) {
+    return outputJsonSync(file, data, pretty ? jsonOption : undefined);
   },
 });
 
-module.exports = { Text, Json, Creator };
+const TextToJson = Creator({
+  init: '',
+  read(file) {
+    return readFileSync(file, { encoding: 'utf-8' });
+  },
+  write(file, data, { pretty = false } = {}) {
+    return outputJsonSync(file, data, pretty ? jsonOption : undefined);
+  },
+});
+
+const JsonToText = Creator({
+  init: null,
+  read(file) {
+    return readJsonSync(file);
+  },
+  write(file, data) {
+    return outputFileSync(file, data, { encoding: 'utf-8' });
+  },
+});
+
+module.exports = { Text, Json, TextToJson, JsonToText, Creator };
