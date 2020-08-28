@@ -90,7 +90,7 @@ function Creator({ init, read, write }) {
     }
 
     output(outputPath) {
-      const final = outputPath ? resolve(outputPath) : this.filePath;
+      const final = outputPath ? resolvePath(outputPath) : this.filePath;
       if (final) {
         write(final, this.data, this.option);
         return this;

@@ -1,13 +1,19 @@
 # fs-chain
 
 [![npm][npm-badge]][npm-url]
-[![license][license-badge]][github-url]
+[![github][github-badge]][github-url]
 ![node][node-badge]
+
+[npm-url]: https://www.npmjs.com/package/fs-chain
+[npm-badge]: https://img.shields.io/npm/v/fs-chain.svg?style=flat-square&logo=npm
+[github-url]: git+https://github.com/airkro/fs-chain
+[github-badge]: https://img.shields.io/npm/l/fs-chain.svg?style=flat-square&colorB=blue&logo=github
+[node-badge]: https://img.shields.io/node/v/fs-chain.svg?style=flat-square&colorB=green&logo=node.js
 
 ## Installation
 
-```sh
-npm install fs-chain
+```bash
+npm install fs-chain --save-dev
 ```
 
 ## Usage
@@ -39,9 +45,3 @@ new Json().source('qss'); // require.resolve
 ```
 
 <!-- eslint-enable import/no-extraneous-dependencies -->
-
-[npm-url]: https://www.npmjs.com/package/fs-chain
-[npm-badge]: https://img.shields.io/npm/v/fs-chain.svg?style=flat-square&logo=npm
-[github-url]: https://github.com/airkro/fs-chain
-[node-badge]: https://img.shields.io/node/v/fs-chain.svg?style=flat-square&colorB=green&logo=node.js
-[license-badge]: https://img.shields.io/npm/l/fs-chain.svg?style=flat-square&colorB=blue&logo=github

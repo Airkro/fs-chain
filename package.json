@@ -1,6 +1,6 @@
 {
   "name": "fs-chain",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "license": "MIT",
   "author": {
     "name": "Eric Chen",
@@ -22,17 +22,17 @@
   },
   "dependencies": {
     "fs-extra": "^9.0.1",
-    "kleur": "^4.1.0"
+    "kleur": "^4.1.1"
   },
   "devDependencies": {
-    "@nice-move/cli": "^0.4.2",
-    "@nice-move/eslint-config-base": "^0.3.5",
-    "@nice-move/prettier-config": "^0.2.5",
-    "ava": "^3.11.1",
+    "@nice-move/cli": "^0.4.3",
+    "@nice-move/eslint-config-base": "^0.3.9",
+    "@nice-move/prettier-config": "^0.3.0",
+    "ava": "^3.12.1",
     "eslint": "^6.8.0",
     "eslint-plugin-ava": "^10.5.0",
     "husky": "^4.2.5",
-    "prettier": "^2.0.5"
+    "prettier": "^2.1.1"
   },
   "engines": {
     "node": ">=10"
