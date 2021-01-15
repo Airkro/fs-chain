@@ -20,29 +20,33 @@ function convert(data) {
   return data.split(':').reverse().join(':');
 }
 
-test('create', (t) => {
-  new Chain().handle(() => initData).output(initFile);
+test.serial('create', async (t) => {
+  await new Chain().handle(() => initData).output(initFile);
+
   const result = read(initFile);
   t.deepEqual(result, initData);
 });
 
-test('copy', (t) => {
-  new Chain().source(initFile).output(newFile);
+test.serial('copy', async (t) => {
+  await new Chain().source(initFile).output(newFile);
+
   const result = read(newFile);
   t.deepEqual(result, initData);
 });
 
-test('edit', (t) => {
-  new Chain()
+test.serial('edit', async (t) => {
+  await new Chain()
     .source(initFile)
     .handle(() => changedData)
     .output();
+
   const result = read(initFile);
   t.deepEqual(result, changedData);
 });
 
-test('transfer', (t) => {
-  new Chain().source(initFile).handle(convert).output(newFile);
+test.serial('transfer', async (t) => {
+  await new Chain().source(initFile).handle(convert).output(newFile);
+
   const result = read(newFile);
   t.deepEqual(result, convert(changedData));
 });

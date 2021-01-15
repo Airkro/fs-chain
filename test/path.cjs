@@ -7,11 +7,12 @@ function read(path) {
   return readFileSync(path, { encoding: 'utf-8' });
 }
 
-test('module.id success', (t) => {
+test.cb('module.id success', (t) => {
   const result = read(require.resolve('slash'));
 
   new Chain().source('slash').handle((context) => {
     t.is(result, context);
+    t.end();
   });
 });
 
@@ -31,15 +32,11 @@ const path = './temp/test';
 
 removeSync(path);
 
-test('not exist', (t) => {
+test('not exist', async (t) => {
   const value = 'abc';
 
-  new Chain()
-    .source(path)
-    .handle(() => value)
-    .output();
+  await new Chain().handle(() => value).output(path);
 
   const result = read(path);
-
   t.deepEqual(value, result);
 });
