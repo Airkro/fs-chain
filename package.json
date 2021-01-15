@@ -1,6 +1,6 @@
 {
   "name": "fs-chain",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A file I/O tool chain",
   "license": "MIT",
   "author": {
@@ -20,7 +20,7 @@
   "scripts": {
     "format": "nice-move lint",
     "prepublishOnly": "nice-move lint && ava --verbose --fail-fast",
-    "test": "ava --verbose --fail-fast"
+    "test": "ava --verbose"
   },
   "dependencies": {
     "fs-extra": "^9.0.1",
@@ -40,7 +40,7 @@
     "prettier": "^2.2.1"
   },
   "engines": {
-    "node": "^12 || ^14"
+    "node": "^12.18 || ^14"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"

@@ -1,17 +1,24 @@
-const { resolve, isAbsolute } = require('path');
 const { readFile, readJson, outputFile, outputJson } = require('fs-extra');
 const { cyan } = require('kleur/colors');
 
-function resolvePath(moduleId) {
-  if (isAbsolute(moduleId)) {
-    return moduleId;
-  }
+const { isAbsolute, resolve } = require('path');
 
-  if (moduleId.startsWith('./')) {
-    return resolve(process.cwd(), moduleId);
-  }
+const root = (module.parent && module.parent.path) || require.main.path;
 
-  return require.resolve(moduleId);
+function requireFromMain(path) {
+  if (isAbsolute(path)) {
+    return path;
+  }
+  if (path.startsWith('./') || path.startsWith('../')) {
+    return resolve(root, path);
+  }
+  if (path.startsWith('~')) {
+    return resolve(process.cwd(), path.replace(/^~/, ''));
+  }
+  if (path) {
+    return require.resolve(path);
+  }
+  return '';
 }
 
 function Creator({ init, read, write }) {
@@ -37,9 +44,10 @@ function Creator({ init, read, write }) {
       if (!path) {
         throw new Error('source cannot be empty');
       }
-      const io = resolvePath(path);
-      this.source = io;
-      this.action = read(io);
+
+      this.source = path;
+      this.action = read(path);
+
       return this;
     }
 
@@ -48,16 +56,12 @@ function Creator({ init, read, write }) {
       return this;
     }
 
-    output(outputPath) {
-      const finalPath = outputPath ? resolvePath(outputPath) : this.source;
-
-      if (!finalPath) {
+    output(path = this.source) {
+      if (!path && !this.source) {
         throw new Error('outputPath cannot be empty');
       }
 
-      this.action = this.action.then((data) =>
-        write(finalPath, data, this.option),
-      );
+      this.action = this.action.then((data) => write(path, data, this.option));
 
       return this;
     }
@@ -78,11 +82,11 @@ function Creator({ init, read, write }) {
 
 const Text = Creator({
   init: '',
-  read(file) {
-    return readFile(file, { encoding: 'utf-8' });
+  async read(path) {
+    return readFile(requireFromMain(path), { encoding: 'utf-8' });
   },
-  write(file, data) {
-    return outputFile(file, data, { encoding: 'utf-8' });
+  async write(path, data) {
+    return outputFile(requireFromMain(path), data, { encoding: 'utf-8' });
   },
 });
 
@@ -90,32 +94,50 @@ const jsonOption = { spaces: 2, EOL: '\r', replacer: null };
 
 const Json = Creator({
   init: null,
-  read(file) {
-    return readJson(file);
+  async read(path) {
+    return readJson(requireFromMain(path));
   },
-  write(file, data, { pretty = false } = {}) {
-    return outputJson(file, data, pretty ? jsonOption : undefined);
+  async write(path, data, { pretty = false } = {}) {
+    return outputJson(
+      requireFromMain(path),
+      data,
+      pretty ? jsonOption : undefined,
+    );
   },
 });
 
 const TextToJson = Creator({
   init: '',
-  read(file) {
-    return readFile(file, { encoding: 'utf-8' });
+  async read(file) {
+    return readFile(requireFromMain(file), {
+      encoding: 'utf-8',
+    });
   },
-  write(file, data, { pretty = false } = {}) {
-    return outputJson(file, data, pretty ? jsonOption : undefined);
+  async write(path, data, { pretty = false } = {}) {
+    return outputJson(
+      requireFromMain(path),
+      data,
+      pretty ? jsonOption : undefined,
+    );
   },
 });
 
 const JsonToText = Creator({
   init: null,
-  read(file) {
-    return readJson(file);
+  async read(path) {
+    return readJson(requireFromMain(path));
   },
-  write(file, data) {
-    return outputFile(file, data, { encoding: 'utf-8' });
+  async write(path, data) {
+    return outputFile(requireFromMain(path), data, {
+      encoding: 'utf-8',
+    });
   },
 });
 
-module.exports = { Text, Json, TextToJson, JsonToText, Creator };
+module.exports = {
+  Creator,
+  Json,
+  JsonToText,
+  Text,
+  TextToJson,
+};

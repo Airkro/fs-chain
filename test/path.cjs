@@ -1,42 +1,30 @@
 const test = require('ava');
-const { readFileSync, removeSync } = require('fs-extra');
+const { resolve } = require('path');
 
+const { readText: read } = require('./helper/utils.cjs');
 const { Text: Chain } = require('..');
 
-function read(path) {
-  return readFileSync(path, { encoding: 'utf-8' });
-}
+test('cwd', async (t) => {
+  const result = read('~.editorconfig');
+  const context = await new Chain().source('~.editorconfig');
+  t.is(result, context);
+});
 
-test.cb('module.id success', (t) => {
-  const result = read(require.resolve('slash'));
+test('absolute', async (t) => {
+  const result = read(resolve(process.cwd(), '.editorconfig'));
+  const context = await new Chain().source('~.editorconfig');
+  t.is(result, context);
+});
 
-  new Chain().source('slash').handle((context) => {
-    t.is(result, context);
-    t.end();
+test('module.id', async (t) => {
+  const result = read('slash');
+  const context = await new Chain().source('slash');
+  t.is(result, context);
+});
+
+test('fail', async (t) => {
+  await t.throwsAsync(() => new Chain().source('react').action, {
+    instanceOf: Error,
+    code: 'MODULE_NOT_FOUND',
   });
-});
-
-test('module.id fail', (t) => {
-  t.throws(
-    () => {
-      new Chain().source('react');
-    },
-    {
-      instanceOf: Error,
-      code: 'MODULE_NOT_FOUND',
-    },
-  );
-});
-
-const path = './temp/test';
-
-removeSync(path);
-
-test('not exist', async (t) => {
-  const value = 'abc';
-
-  await new Chain().handle(() => value).output(path);
-
-  const result = read(path);
-  t.deepEqual(value, result);
 });

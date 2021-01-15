@@ -1,16 +1,16 @@
 const test = require('ava');
-const { readJsonSync: read, removeSync } = require('fs-extra');
 
+const { remove, readJson: read } = require('./helper/utils.cjs');
 const { Json: Chain } = require('..');
 
-const initFile = './temp/init.json';
-const newFile = './temp/new.json';
+const initFile = '../temp/init.json';
+const newFile = '../temp/new.json';
 
 const initData = { init: 'sample' };
 const changedData = { changed: 'sample' };
 
-removeSync(initFile);
-removeSync(newFile);
+remove(initFile);
+remove(newFile);
 
 function convert(data) {
   return Object.fromEntries(Object.entries(data).reverse());

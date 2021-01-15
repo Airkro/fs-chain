@@ -1,20 +1,16 @@
 const test = require('ava');
-const { readFileSync: rfs, removeSync } = require('fs-extra');
 
+const { remove, readText: read } = require('./helper/utils.cjs');
 const { Text: Chain } = require('..');
 
-const initFile = './temp/init.txt';
-const newFile = './temp/new.txt';
+const initFile = '../temp/init.txt';
+const newFile = '../temp/new.txt';
 
 const initData = 'init:sample';
 const changedData = 'changed:sample';
 
-removeSync(initFile);
-removeSync(newFile);
-
-function read(path) {
-  return rfs(path, { encoding: 'utf-8' });
-}
+remove(initFile);
+remove(newFile);
 
 function convert(data) {
   return data.split(':').reverse().join(':');

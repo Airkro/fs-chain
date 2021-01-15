@@ -1,11 +1,11 @@
 const test = require('ava');
-const { removeSync, existsSync } = require('fs-extra');
 
+const { remove, exists } = require('./helper/utils.cjs');
 const { Text: Chain } = require('..');
 
-const initFile = './temp/skip.json';
+const initFile = '../temp/skip.json';
 
-removeSync(initFile);
+remove(initFile);
 
 test.serial('skip', async (t) => {
   const message = await new Chain()
@@ -19,5 +19,5 @@ test.serial('skip', async (t) => {
 });
 
 test.serial('skipped', (t) => {
-  t.false(existsSync(initFile));
+  t.false(exists(initFile));
 });
