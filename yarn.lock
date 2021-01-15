@@ -342,7 +342,7 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@nice-move/cli@^0.5.14":
+"@nice-move/cli@0.5.14":
   version "0.5.14"
   resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2fcli/-/cli-0.5.14.tgz#da72dc978d658b09595a5d853c63a4073ce6d6a6"
   integrity sha512-CKgR3ByCXg8P5EUHNRXuzLsrI8PasWIeQI+5GtlAfQQ2JGQOkyOGmZxF38Tls3veBF0lUelq2DfyvWhMIrQaQw==
@@ -351,14 +351,14 @@
     "@nice-move/lint" "^0.1.2"
     cheetor "^0.3.2"
 
-"@nice-move/commitlint-config@^0.0.0":
+"@nice-move/commitlint-config@0.0.0":
   version "0.0.0"
   resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2fcommitlint-config/-/commitlint-config-0.0.0.tgz#725db0dd3dbb4e106eaca9dbae27694c709a4c6f"
   integrity sha512-8KQkFwp/8Lobv17HWedeBrbcmDIsm78JZsSucAuDCoybV3iMczz108affRP3RoLD0FeZSzbDLKt2IqTdmmi1Yg==
   dependencies:
     "@commitlint/config-conventional" "^11.0.0"
 
-"@nice-move/eslint-config-base@^0.5.14":
+"@nice-move/eslint-config-base@0.5.14":
   version "0.5.14"
   resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2feslint-config-base/-/eslint-config-base-0.5.14.tgz#947988b547fe7da043189d10588c359902aa5958"
   integrity sha512-3az28HyJWKReaQ8zKrOaxAD75qJxui27szsiON8XtMrbDe5ECEZpLjr/g6tDkbTsMGyXkUhYGOO572u/f3r1Mg==
@@ -401,7 +401,7 @@
     replace-in-file "^6.1.0"
     yarn-deduplicate "^3.1.0"
 
-"@nice-move/prettier-config@^0.3.5":
+"@nice-move/prettier-config@0.3.5":
   version "0.3.5"
   resolved "https://mirrors.cloud.tencent.com/npm/@nice-move%2fprettier-config/-/prettier-config-0.3.5.tgz#97fbbb4159d317186d58b1849f59cf3a984ddce4"
   integrity sha512-DzDqRR/ZrD/8PDErG2W7QT2ohwafeGeidLG1dVcQjyiStw4x4o0NFtoz1nddo/iYMMhDykQUFDfWbp9s52vRcQ==
@@ -759,7 +759,7 @@ autoprefixer@^9.8.6:
     postcss "^7.0.32"
     postcss-value-parser "^4.1.0"
 
-ava@^3.15.0:
+ava@3.15.0:
   version "3.15.0"
   resolved "https://mirrors.cloud.tencent.com/npm/ava/-/ava-3.15.0.tgz#a239658ab1de8a29a243cc902e6b42e4574de2f0"
   integrity sha512-HGAnk1SHPk4Sx6plFAUkzV/XC1j9+iQhOzt4vBly18/yo0AV8Oytx7mtJd/CR8igCJ5p160N/Oo/cNJi2uSeWA==
@@ -1220,7 +1220,7 @@ commander@^6.1.0, commander@^6.2.0:
   resolved "https://mirrors.cloud.tencent.com/npm/commander/-/commander-6.2.1.tgz#0792eb682dfbc325999bb2b84fddddba110ac73c"
   integrity sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==
 
-commitlint@^11.0.0:
+commitlint@11.0.0:
   version "11.0.0"
   resolved "https://mirrors.cloud.tencent.com/npm/commitlint/-/commitlint-11.0.0.tgz#a60f759b938c97c5d601c881cfe71b1d4051d219"
   integrity sha512-nTmP1tM52gfi39tDCN8dAlRRWJyVoJY2JuYgVhSONETGJ2MY69K/go0YbCzlIEDO/bUka5ybeI6CJz5ZicvNzg==
@@ -1778,7 +1778,7 @@ eslint-module-utils@^2.6.0:
     debug "^2.6.9"
     pkg-dir "^2.0.0"
 
-eslint-plugin-ava@^11.0.0:
+eslint-plugin-ava@11.0.0:
   version "11.0.0"
   resolved "https://mirrors.cloud.tencent.com/npm/eslint-plugin-ava/-/eslint-plugin-ava-11.0.0.tgz#92d98694b4af6d6f2353613af06301d44d6b13a6"
   integrity sha512-UMGedfl/gIKx1tzjGtAsTSJgowyAEZU2VWmpoWXYcuuV4B2H4Cu90yuMgMPEVt1mQlIZ21L7YM2CSpHUFJo/LQ==
@@ -1946,7 +1946,7 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://mirrors.cloud.tencent.com/npm/eslint-visitor-keys/-/eslint-visitor-keys-2.0.0.tgz#21fdc8fbcd9c795cc0321f0563702095751511a8"
   integrity sha512-QudtT6av5WXels9WjIM7qz1XD1cWGvX4gGXvp/zBn9nXG02D0utdU3Em2m/QjTnrsk6bBjmCygl3rmj118msQQ==
 
-eslint@^7.17.0:
+eslint@7.17.0, eslint@^7.17.0:
   version "7.17.0"
   resolved "https://mirrors.cloud.tencent.com/npm/eslint/-/eslint-7.17.0.tgz#4ccda5bf12572ad3bf760e6f195886f50569adb0"
   integrity sha512-zJk08MiBgwuGoxes5sSQhOtibZ75pz0J35XTRlZOk9xMffhpA9BTbQZxoXZzOl5zMbleShbGwtw+1kGferfFwQ==
@@ -2247,7 +2247,7 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.npmjs.org/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-garou@^0.1.10:
+garou@0.1.10:
   version "0.1.10"
   resolved "https://mirrors.cloud.tencent.com/npm/garou/-/garou-0.1.10.tgz#0215cf13a329402ac07bf4dbd094c552876212a8"
   integrity sha512-/N3IcQB31e3HITL4D+X4mQcoAhXZA2a0HDirs+766kZzKF7j+RYHnEwCJeNLyHkNFhTJLSpOu6MTAUqeY3dGSw==
@@ -2595,7 +2595,7 @@ human-signals@^1.1.1:
   resolved "https://registry.npmjs.org/human-signals/-/human-signals-1.1.1.tgz#c5b1cd14f50aeae09ab6c59fe63ba3395fe4dfa3"
   integrity sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw==
 
-husky@^4.3.7:
+husky@4.3.7:
   version "4.3.7"
   resolved "https://mirrors.cloud.tencent.com/npm/husky/-/husky-4.3.7.tgz#ca47bbe6213c1aa8b16bbd504530d9600de91e88"
   integrity sha512-0fQlcCDq/xypoyYSJvEuzbDPHFf8ZF9IXKJxlrnvxABTSzK1VPT2RKYQKrcgJ+YD39swgoB6sbzywUqFxUiqjw==
@@ -4077,7 +4077,7 @@ prettier-plugin-toml@^0.3.1:
     "@toml-tools/parser" "^0.3.1"
     prettier "^1.16.0"
 
-prettier@>=1.10, prettier@>=2.0, prettier@^2.2.1:
+prettier@2.2.1, prettier@>=1.10, prettier@>=2.0:
   version "2.2.1"
   resolved "https://mirrors.cloud.tencent.com/npm/prettier/-/prettier-2.2.1.tgz#795a1a78dd52f073da0cd42b21f9c91381923ff5"
   integrity sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q==
