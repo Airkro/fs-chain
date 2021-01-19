@@ -5,6 +5,7 @@ const { Text: Chain } = require('..');
 test.serial('exists', async (t) => {
   await new Chain()
     .exists(__filename)
+    .source()
     .action.then(() => {
       t.pass();
     })

@@ -1,3 +1,4 @@
+/* eslint-disable promise/no-nesting */
 const {
   readFile,
   readJson,
@@ -11,7 +12,10 @@ const { isAbsolute, resolve } = require('path');
 
 const root = (module.parent && module.parent.path) || require.main.path;
 
-function requireFromMain(path) {
+function requireFromMain(path = '') {
+  if (path === '') {
+    return '';
+  }
   if (isAbsolute(path)) {
     return path;
   }
@@ -66,13 +70,16 @@ function Creator({ init, read, write }) {
       return this;
     }
 
-    source(path = this.source) {
-      if (!path) {
-        throw new Error('path cannot be empty');
-      }
+    source(path) {
+      this.action = this.action.then(() => {
+        const io = path === undefined ? this.source : path;
 
-      this.source = path;
-      this.action = read(path);
+        if (!io) {
+          throw new Error('path cannot be empty');
+        }
+        this.source = io;
+        return read(io);
+      });
 
       return this;
     }
@@ -82,12 +89,15 @@ function Creator({ init, read, write }) {
       return this;
     }
 
-    output(path = this.source) {
-      if (!path && !this.source) {
-        throw new Error('outputPath cannot be empty');
-      }
-
-      this.action = this.action.then((data) => write(path, data, this.option));
+    output(path) {
+      this.action = this.action.then((data) => {
+        const io = path === undefined ? this.source : path;
+        if (!io) {
+          throw new Error('path cannot be empty');
+        }
+        this.source = io;
+        return write(io, data, this.option).then(() => data);
+      });
 
       return this;
     }
@@ -123,7 +133,7 @@ const Text = Creator({
   },
 });
 
-const jsonOption = { spaces: 2, EOL: '\r', replacer: null };
+const jsonOption = { spaces: 2, replacer: null };
 
 const Json = Creator({
   init: null,
