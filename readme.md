@@ -25,21 +25,21 @@ const { Text, Json } = require('fs-chain');
 
 new Text() // create file
   .handle(() => 'text:sample')
-  .output('./path/filename');
+  .output('./filename');
 
 new Json() // copy file
-  .source('./path/old-filename')
-  .output('./path/new-filename');
+  .source('./old-filename')
+  .output('./new-filename');
 
 new Text() // edit file
-  .source('./path/filename')
+  .source('./filename')
   .handle((data) => data.trim())
   .output();
 
 new Json() // transfer file
-  .source('./path/old-filename')
+  .source('./old-filename')
   .handle((data) => data.value)
-  .output('./path/new-filename');
+  .output('./new-filename');
 
 new Json().source('qss'); // require.resolve
 
@@ -52,7 +52,7 @@ new Text()
     // other step
   });
 
-new Text().exists('./path/old-filename').handle(() => {
+new Text().exists('./filename').handle(() => {
   // won't call when not exists
 });
 ```
