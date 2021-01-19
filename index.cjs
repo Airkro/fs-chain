@@ -71,7 +71,14 @@ function Creator({ init, read, write }) {
     }
 
     catch(callback) {
-      return this.action.catch(callback);
+      return this.action.catch((error) => {
+        if (error.message !== 'skip') {
+          throw error;
+        }
+        if (typeof callback === 'function') {
+          callback(error);
+        }
+      });
     }
 
     finally(callback) {

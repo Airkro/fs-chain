@@ -20,8 +20,6 @@ npm install fs-chain --save-dev
 
 ## Usage
 
-<!-- eslint-disable-next-line import/no-extraneous-dependencies -->
-
 ```js
 const { Text, Json } = require('fs-chain');
 
@@ -44,6 +42,13 @@ new Json() // transfer file
   .output('./path/new-filename');
 
 new Json().source('qss'); // require.resolve
-```
 
-<!-- eslint-enable import/no-extraneous-dependencies -->
+new Text()
+  .handle(() => {
+    // skip following step
+    throw new Error('skip');
+  })
+  .handle(() => {
+    // other step
+  });
+```

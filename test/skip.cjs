@@ -10,12 +10,12 @@ remove(initFile);
 test.serial('skip', async (t) => {
   const message = await new Chain()
     .handle(() => {
-      throw new Error('cutout');
+      throw new Error('skip');
     })
     .output(initFile)
-    .catch((error) => error.message);
+    .action.catch((error) => error.message);
 
-  t.is(message, 'cutout');
+  t.is(message, 'skip');
 });
 
 test.serial('skipped', (t) => {
