@@ -51,4 +51,8 @@ new Text()
   .handle(() => {
     // other step
   });
+
+new Text().exists('./path/old-filename').handle(() => {
+  // won't call when not exists
+});
 ```

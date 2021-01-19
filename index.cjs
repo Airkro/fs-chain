@@ -1,4 +1,10 @@
-const { readFile, readJson, outputFile, outputJson } = require('fs-extra');
+const {
+  readFile,
+  readJson,
+  outputFile,
+  outputJson,
+  stat,
+} = require('fs-extra');
 const { cyan } = require('kleur/colors');
 
 const { isAbsolute, resolve } = require('path');
@@ -40,9 +46,29 @@ function Creator({ init, read, write }) {
       return this;
     }
 
-    source(path) {
+    exists(path) {
       if (!path) {
-        throw new Error('source cannot be empty');
+        throw new Error('path cannot be empty');
+      }
+
+      const io = requireFromMain(path);
+
+      this.action = stat(io)
+        .then(() => {
+          this.source = io;
+        })
+        .catch((error) => {
+          if (error.code === 'ENOENT') {
+            throw new Error('skip');
+          }
+        });
+
+      return this;
+    }
+
+    source(path = this.source) {
+      if (!path) {
+        throw new Error('path cannot be empty');
       }
 
       this.source = path;
