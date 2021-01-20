@@ -26,8 +26,9 @@ if (isMainThread) {
       }
       if (count === 2) {
         t.is(line, '× testing 2');
-        t.end();
+
         worker.terminate();
+        t.end();
       }
     });
   });

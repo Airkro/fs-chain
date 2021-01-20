@@ -103,7 +103,9 @@ function Creator({ init, read, write }) {
           return io;
         },
         (error) => {
-          console.log(red('×'), message);
+          if (error.message !== 'skip') {
+            console.log(red('×'), message);
+          }
           throw error;
         },
       );
@@ -135,7 +137,7 @@ const Text = Creator({
   read(path) {
     return readFile(path, { encoding: 'utf-8' });
   },
-  async write(path, data) {
+  write(path, data) {
     return outputFile(path, data, { encoding: 'utf-8' });
   },
 });
@@ -147,7 +149,7 @@ const Json = Creator({
   read(path) {
     return readJson(path);
   },
-  async write(path, data, { pretty = false } = {}) {
+  write(path, data, { pretty = false } = {}) {
     return outputJson(path, data, pretty ? jsonOption : undefined);
   },
 });
@@ -157,7 +159,7 @@ const TextToJson = Creator({
   read(file) {
     return readFile(file, { encoding: 'utf-8' });
   },
-  async write(path, data, { pretty = false } = {}) {
+  write(path, data, { pretty = false } = {}) {
     return outputJson(path, data, pretty ? jsonOption : undefined);
   },
 });
@@ -167,7 +169,7 @@ const JsonToText = Creator({
   read(path) {
     return readJson(path);
   },
-  async write(path, data) {
+  write(path, data) {
     return outputFile(path, data, { encoding: 'utf-8' });
   },
 });
