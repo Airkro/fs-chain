@@ -52,7 +52,10 @@ new Text()
     // other step
   });
 
-new Text().exists('./filename').handle(() => {
-  // won't call when not exists
-});
+new Text()
+  .source('./filename')
+  .exists((exists) => exists)
+  .handle(() => {
+    // won't call when not exists
+  });
 ```

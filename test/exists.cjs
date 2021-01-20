@@ -4,8 +4,8 @@ const { Text: Chain } = require('..');
 
 test.serial('exists', async (t) => {
   await new Chain()
-    .exists(__filename)
-    .source()
+    .source(__filename)
+    .exists((exists) => exists)
     .action.then(() => {
       t.pass();
     })
@@ -16,7 +16,8 @@ test.serial('exists', async (t) => {
 
 test.serial('not exists', async (t) => {
   const message = await new Chain()
-    .exists(`${__filename}.bk`)
+    .source(`${__filename}.bk`)
+    .exists((exists) => exists)
     .action.catch((error) => error.message);
 
   t.is(message, 'skip');

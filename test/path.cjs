@@ -1,5 +1,4 @@
 const test = require('ava');
-const { resolve } = require('path');
 
 const { readText: read } = require('./helper/utils.cjs');
 const { Text: Chain } = require('..');
@@ -11,7 +10,7 @@ test('cwd', async (t) => {
 });
 
 test('absolute', async (t) => {
-  const result = read(resolve(process.cwd(), '.editorconfig'));
+  const result = read('~.editorconfig');
   const context = await new Chain().source('~.editorconfig');
   t.is(result, context);
 });

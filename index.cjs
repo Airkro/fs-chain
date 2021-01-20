@@ -1,11 +1,5 @@
 /* eslint-disable promise/no-nesting */
-const {
-  readFile,
-  readJson,
-  outputFile,
-  outputJson,
-  stat,
-} = require('fs-extra');
+const { readFile, readJson, outputFile, outputJson } = require('fs-extra');
 const { cyan } = require('kleur/colors');
 
 const { isAbsolute, resolve } = require('path');
@@ -50,35 +44,37 @@ function Creator({ init, read, write }) {
       return this;
     }
 
-    exists(path) {
+    source(path) {
       if (!path) {
         throw new Error('path cannot be empty');
       }
-
-      const io = requireFromMain(path);
-
-      this.action = stat(io)
-        .then(() => {
-          this.source = io;
-        })
-        .catch((error) => {
-          if (error.code === 'ENOENT') {
-            throw new Error('skip');
-          }
-        });
+      this.action = this.action.then(() => {
+        const io = requireFromMain(path);
+        this.source = io;
+        return read(io).then(
+          (data) => {
+            this.exists = true;
+            return data;
+          },
+          (error) => {
+            if (error.code === 'ENOENT') {
+              this.exists = false;
+              return init;
+            }
+            throw error;
+          },
+        );
+      });
 
       return this;
     }
 
-    source(path) {
-      this.action = this.action.then(() => {
-        const io = path === undefined ? this.source : path;
-
-        if (!io) {
-          throw new Error('path cannot be empty');
+    exists(callback) {
+      this.action = this.action.then((data) => {
+        if (callback(this.exists)) {
+          return data;
         }
-        this.source = io;
-        return read(io);
+        throw new Error('skip');
       });
 
       return this;
@@ -91,7 +87,7 @@ function Creator({ init, read, write }) {
 
     output(path) {
       this.action = this.action.then((data) => {
-        const io = path === undefined ? this.source : path;
+        const io = requireFromMain(path === undefined ? this.source : path);
         if (!io) {
           throw new Error('path cannot be empty');
         }
@@ -124,11 +120,11 @@ function Creator({ init, read, write }) {
 
 const Text = Creator({
   init: '',
-  async read(path) {
-    return readFile(requireFromMain(path), { encoding: 'utf-8' });
+  read(path) {
+    return readFile(path, { encoding: 'utf-8' });
   },
   async write(path, data) {
-    return outputFile(requireFromMain(path), data, { encoding: 'utf-8' });
+    return outputFile(path, data, { encoding: 'utf-8' });
   },
 });
 
@@ -136,43 +132,31 @@ const jsonOption = { spaces: 2, replacer: null };
 
 const Json = Creator({
   init: null,
-  async read(path) {
-    return readJson(requireFromMain(path));
+  read(path) {
+    return readJson(path);
   },
   async write(path, data, { pretty = false } = {}) {
-    return outputJson(
-      requireFromMain(path),
-      data,
-      pretty ? jsonOption : undefined,
-    );
+    return outputJson(path, data, pretty ? jsonOption : undefined);
   },
 });
 
 const TextToJson = Creator({
   init: '',
-  async read(file) {
-    return readFile(requireFromMain(file), {
-      encoding: 'utf-8',
-    });
+  read(file) {
+    return readFile(file, { encoding: 'utf-8' });
   },
   async write(path, data, { pretty = false } = {}) {
-    return outputJson(
-      requireFromMain(path),
-      data,
-      pretty ? jsonOption : undefined,
-    );
+    return outputJson(path, data, pretty ? jsonOption : undefined);
   },
 });
 
 const JsonToText = Creator({
   init: null,
-  async read(path) {
-    return readJson(requireFromMain(path));
+  read(path) {
+    return readJson(path);
   },
   async write(path, data) {
-    return outputFile(requireFromMain(path), data, {
-      encoding: 'utf-8',
-    });
+    return outputFile(path, data, { encoding: 'utf-8' });
   },
 });
 
