@@ -1,6 +1,6 @@
 {
   "name": "fs-chain",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "A file I/O tool chain",
   "license": "MIT",
   "author": {
@@ -23,6 +23,7 @@
     "test": "ava --verbose"
   },
   "dependencies": {
+    "chalk": "^4.1.0",
     "fs-extra": "^9.1.0"
   },
   "devDependencies": {

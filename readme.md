@@ -58,4 +58,11 @@ new Text()
   .handle(() => {
     // won't call when not exists
   });
+
+new Text()
+  .logger('testing 1') // √ testing 1
+  .handle(() => {
+    throw new Error('fail');
+  })
+  .logger('testing 2'); // × testing 2
 ```

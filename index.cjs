@@ -1,6 +1,6 @@
 /* eslint-disable promise/no-nesting */
 const { readFile, readJson, outputFile, outputJson } = require('fs-extra');
-
+const { green, red } = require('chalk');
 const { isAbsolute, resolve } = require('path');
 
 const root = (module.parent && module.parent.path) || require.main.path;
@@ -26,13 +26,8 @@ function requireFromMain(path = '') {
 
 function Creator({ init, read, write }) {
   return class Chain {
-    constructor(message) {
-      if (message) {
-        console.log(message);
-      }
-
+    constructor() {
       this.action = Promise.resolve(init);
-
       return this;
     }
 
@@ -94,6 +89,24 @@ function Creator({ init, read, write }) {
         return write(io, data, this.option).then(() => data);
       });
 
+      return this;
+    }
+
+    logger(message) {
+      if (!message) {
+        throw new Error('message cannot be empty');
+      }
+
+      this.action = this.action.then(
+        (io) => {
+          console.log(green('√'), message);
+          return io;
+        },
+        (error) => {
+          console.log(red('×'), message);
+          throw error;
+        },
+      );
       return this;
     }
 
