@@ -1,6 +1,5 @@
 /* eslint-disable promise/no-nesting */
 const { readFile, readJson, outputFile, outputJson } = require('fs-extra');
-const { cyan } = require('kleur/colors');
 
 const { isAbsolute, resolve } = require('path');
 
@@ -27,9 +26,9 @@ function requireFromMain(path = '') {
 
 function Creator({ init, read, write }) {
   return class Chain {
-    constructor(title) {
-      if (title) {
-        console.log(cyan('Chain:'), title);
+    constructor(message) {
+      if (message) {
+        console.log(message);
       }
 
       this.action = Promise.resolve(init);
