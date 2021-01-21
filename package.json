@@ -1,6 +1,6 @@
 {
   "name": "fs-chain",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "description": "A file I/O tool chain",
   "license": "MIT",
   "author": {
@@ -19,7 +19,7 @@
   "files": [],
   "scripts": {
     "format": "nice-move lint",
-    "prepublishOnly": "nice-move lint && ava --verbose --fail-fast",
+    "prepublishOnly": "nice-move lint && ava --fail-fast",
     "test": "ava --verbose"
   },
   "dependencies": {
@@ -53,7 +53,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "nice-move lint && ava --verbose --fail-fast",
+      "pre-commit": "nice-move lint && ava --fail-fast",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },

@@ -92,19 +92,19 @@ function Creator({ init, read, write }) {
       return this;
     }
 
-    logger(message) {
-      if (!message) {
+    logger(...message) {
+      if (message.length === 0) {
         throw new Error('message cannot be empty');
       }
 
       this.action = this.action.then(
         (io) => {
-          console.log(green('√'), message);
+          console.log(green('√'), ...message);
           return io;
         },
         (error) => {
           if (error.message !== 'skip') {
-            console.log(red('×'), message);
+            console.log(red('×'), ...message);
           }
           throw error;
         },
