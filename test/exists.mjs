@@ -1,23 +1,24 @@
-const test = require('ava');
+import test from 'ava';
+import { fileURLToPath } from 'url';
 
-const { Text: Chain } = require('..');
+import { Text as Chain } from '../index.cjs';
 
 test.serial('exists', async (t) => {
   await new Chain()
-    .source(__filename)
+    .source(fileURLToPath(import.meta.url))
     .exists((exists) => exists)
     .action.then(() => {
       t.pass();
     })
     .catch((error) => {
       // eslint-disable-next-line ava/assertion-arguments
-      t.fail(error.message);
+      t.fail(error.message || 'fail');
     });
 });
 
 test.serial('not exists', async (t) => {
   const message = await new Chain()
-    .source(`${__filename}.bk`)
+    .source(`${fileURLToPath(import.meta.url)}.bk`)
     .exists((exists) => exists)
     .action.catch((error) => error.message);
 

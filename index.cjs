@@ -2,17 +2,20 @@
 const { readFile, readJson, outputFile, outputJson } = require('fs-extra');
 const { green, red } = require('chalk');
 const { isAbsolute, resolve } = require('path');
+const { fileURLToPath } = require('url');
 
-const root = (module.parent && module.parent.path) || require.main.path;
+const { main = {} } = require || {};
+const { parent = main } = module;
+const { filename: defaultRoot } = parent;
 
-function requireFromMain(path = '') {
-  if (path === '') {
-    return '';
-  }
+function requireFromMain(path, root) {
   if (isAbsolute(path)) {
     return path;
   }
   if (path.startsWith('./') || path.startsWith('../')) {
+    if (!root) {
+      throw new Error('root is required');
+    }
     return resolve(root, path);
   }
   if (path.startsWith('~')) {
@@ -26,7 +29,9 @@ function requireFromMain(path = '') {
 
 function Creator({ init, read, write }) {
   return class Chain {
-    constructor() {
+    constructor(root = defaultRoot) {
+      this.root =
+        new URL(root).protocol === 'file:' ? fileURLToPath(root) : root;
       this.action = Promise.resolve(init);
       return this;
     }
@@ -43,7 +48,7 @@ function Creator({ init, read, write }) {
         throw new Error('path cannot be empty');
       }
       this.action = this.action.then(() => {
-        const io = requireFromMain(path);
+        const io = requireFromMain(path, this.root);
         this.source = io;
         return read(io).then(
           (data) => {
@@ -81,7 +86,10 @@ function Creator({ init, read, write }) {
 
     output(path) {
       this.action = this.action.then((data) => {
-        const io = requireFromMain(path === undefined ? this.source : path);
+        const io = requireFromMain(
+          path === undefined ? this.source : path,
+          this.root,
+        );
         if (!io) {
           throw new Error('path cannot be empty');
         }

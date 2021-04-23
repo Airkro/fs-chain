@@ -43,7 +43,7 @@ test.serial('nesting', async (t) => {
   await new Chain()
     .source(initFile)
     .handle(convert)
-    .output(initFile)
+    .output()
     .handle(convert)
     .handle(convert)
     .output(newFile);

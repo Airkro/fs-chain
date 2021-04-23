@@ -20,7 +20,7 @@ npm install fs-chain --save-dev
 
 ## Usage
 
-```js
+```cjs
 const { Text, Json } = require('fs-chain');
 
 new Text() // create file
@@ -65,4 +65,19 @@ new Text()
     throw new Error('fail');
   })
   .logger('testing 2'); // × testing 2
+```
+
+```cjs
+const { Text } = require('fs-chain');
+
+// base url for relative file resolve
+new Text(BaseUrl).source('./');
+```
+
+```mjs
+import { Text } from 'fs-chain';
+
+// passing `import.meta.url` is es modules
+// base url for relative file resolve
+new Text(import.meta.url).source('./');
 ```

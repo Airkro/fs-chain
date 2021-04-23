@@ -1,11 +1,14 @@
-const test = require('ava');
+import test from 'ava';
 
-const { remove, exists } = require('./helper/utils.cjs');
-const { Text: Chain } = require('..');
+import { Text as Chain } from '../index.cjs';
+
+import utils from './helper/utils.cjs';
+
+const { remove, exists } = utils;
 
 const initFile = '../temp/skip.json';
 
-remove(initFile);
+remove(initFile, import.meta.url);
 
 test.serial('skip', async (t) => {
   const message = await new Chain()
@@ -21,5 +24,5 @@ test.serial('skip', async (t) => {
 });
 
 test.serial('skipped', (t) => {
-  t.false(exists(initFile));
+  t.false(exists(initFile, import.meta.url));
 });
