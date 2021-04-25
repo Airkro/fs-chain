@@ -8,7 +8,7 @@ const { remove, exists } = utils;
 
 const initFile = '../temp/skip.json';
 
-remove(initFile, import.meta.url);
+remove(initFile);
 
 test.serial('skip', async (t) => {
   const message = await new Chain()
@@ -24,5 +24,5 @@ test.serial('skip', async (t) => {
 });
 
 test.serial('skipped', (t) => {
-  t.false(exists(initFile, import.meta.url));
+  t.false(exists(initFile));
 });

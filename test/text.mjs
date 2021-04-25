@@ -6,50 +6,44 @@ import utils from './helper/utils.cjs';
 
 const { remove, readText: read } = utils;
 
-const initFile = '../temp/init.txt';
-const newFile = '../temp/new.txt';
+const initFile = './temp/init.txt';
+const newFile = './temp/new.txt';
 
 const initData = 'init:sample';
 const changedData = 'changed:sample';
 
-remove(initFile, import.meta.url);
-remove(newFile, import.meta.url);
+remove(initFile);
+remove(newFile);
 
 function convert(data) {
   return data.split(':').reverse().join(':');
 }
 
 test.serial('create', async (t) => {
-  await new Chain(import.meta.url).handle(() => initData).output(initFile);
-  t.deepEqual(read(initFile, import.meta.url), initData);
+  await new Chain().handle(() => initData).output(initFile);
+  t.deepEqual(read(initFile), initData);
 });
 
 test.serial('copy', async (t) => {
-  await new Chain(import.meta.url).source(initFile).output(newFile);
-  t.deepEqual(read(newFile, import.meta.url), initData);
+  await new Chain().source(initFile).output(newFile);
+  t.deepEqual(read(newFile), initData);
 });
 
 test.serial('edit', async (t) => {
-  await new Chain(import.meta.url)
+  await new Chain()
     .source(initFile)
     .handle(() => changedData)
     .output();
-  t.deepEqual(read(initFile, import.meta.url), changedData);
+  t.deepEqual(read(initFile), changedData);
 });
 
 test.serial('transfer', async (t) => {
-  await new Chain(import.meta.url)
-    .source(initFile)
-    .handle(convert)
-    .output(newFile);
-  t.deepEqual(
-    convert(read(initFile, import.meta.url)),
-    read(newFile, import.meta.url),
-  );
+  await new Chain().source(initFile).handle(convert).output(newFile);
+  t.deepEqual(convert(read(initFile)), read(newFile));
 });
 
 test.serial('nesting', async (t) => {
-  await new Chain(import.meta.url)
+  await new Chain()
     .source(initFile)
     .handle(convert)
     .output()
@@ -57,5 +51,5 @@ test.serial('nesting', async (t) => {
     .handle(convert)
     .output(newFile);
 
-  t.deepEqual(read(initFile, import.meta.url), read(newFile, import.meta.url));
+  t.deepEqual(read(initFile), read(newFile));
 });

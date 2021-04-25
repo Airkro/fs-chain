@@ -1,10 +1,13 @@
 const test = require('ava');
 
-const { remove, readText: read } = require('./helper/utils.cjs');
 const { Text: Chain } = require('..');
 
-const initFile = '../temp/init.txt';
-const newFile = '../temp/new.txt';
+const utils = require('./helper/utils.cjs');
+
+const { remove, readText: read } = utils;
+
+const initFile = './temp/init.txt';
+const newFile = './temp/new.txt';
 
 const initData = 'init:sample';
 const changedData = 'changed:sample';

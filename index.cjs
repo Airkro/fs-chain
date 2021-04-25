@@ -1,37 +1,27 @@
 /* eslint-disable promise/no-nesting */
 const { readFile, readJson, outputFile, outputJson } = require('fs-extra');
 const { green, red } = require('chalk');
-const { isAbsolute, resolve } = require('path');
+const { isAbsolute } = require('path');
 const { fileURLToPath } = require('url');
+const slash = require('slash');
 
-const { main = {} } = require || {};
-const { parent = main } = module;
-const { filename: defaultRoot } = parent;
-
-function requireFromMain(path, root) {
+function resolver(path, root = `${process.cwd()}/`) {
+  let io;
   if (isAbsolute(path)) {
-    return path;
+    io = path;
+  } else if (path.startsWith('~')) {
+    io = require.resolve(path.replace(/^~/, ''));
+  } else {
+    const url = new URL(slash(path), slash(root));
+    io = url.protocol === 'file:' ? fileURLToPath(url) : url.toString();
   }
-  if (path.startsWith('./') || path.startsWith('../')) {
-    if (!root) {
-      throw new Error('root is required');
-    }
-    return resolve(root, path);
-  }
-  if (path.startsWith('~')) {
-    return resolve(process.cwd(), path.replace(/^~/, ''));
-  }
-  if (path) {
-    return require.resolve(path);
-  }
-  return '';
+  return io;
 }
 
 function Creator({ init, read, write }) {
   return class Chain {
-    constructor(root = defaultRoot) {
-      this.root =
-        new URL(root).protocol === 'file:' ? fileURLToPath(root) : root;
+    constructor(root) {
+      this.root = root;
       this.action = Promise.resolve(init);
       return this;
     }
@@ -47,34 +37,13 @@ function Creator({ init, read, write }) {
       if (!path) {
         throw new Error('path cannot be empty');
       }
-      this.action = this.action.then(() => {
-        const io = requireFromMain(path, this.root);
-        this.source = io;
-        return read(io).then(
-          (data) => {
-            this.exists = true;
-            return data;
-          },
-          (error) => {
-            if (error.code === 'ENOENT') {
-              this.exists = false;
-              return init;
-            }
-            throw error;
-          },
-        );
-      });
-
-      return this;
-    }
-
-    exists(callback) {
-      this.action = this.action.then((data) => {
-        if (callback(this.exists)) {
-          return data;
-        }
-        throw new Error('skip');
-      });
+      this.action = this.action
+        .then(() => {
+          this.source = resolver(path, this.root);
+        })
+        .then(() => {
+          return read(this.source);
+        });
 
       return this;
     }
@@ -86,10 +55,7 @@ function Creator({ init, read, write }) {
 
     output(path) {
       this.action = this.action.then((data) => {
-        const io = requireFromMain(
-          path === undefined ? this.source : path,
-          this.root,
-        );
+        const io = resolver(path === undefined ? this.source : path, this.root);
         if (!io) {
           throw new Error('path cannot be empty');
         }
@@ -188,4 +154,5 @@ module.exports = {
   JsonToText,
   Text,
   TextToJson,
+  resolver,
 };

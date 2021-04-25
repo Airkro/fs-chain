@@ -1,7 +1,10 @@
 const test = require('ava');
 
-const { remove, exists } = require('./helper/utils.cjs');
-const { Text: Chain } = require('..');
+const { Text: Chain } = require('../index.cjs');
+
+const utils = require('./helper/utils.cjs');
+
+const { remove, exists } = utils;
 
 const initFile = '../temp/skip.json';
 

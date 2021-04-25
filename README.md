@@ -41,7 +41,7 @@ new Json() // transfer file
   .handle((data) => data.value)
   .output('./new-filename');
 
-new Json().source('qss'); // require.resolve
+new Json().source('~qss'); // require.resolve
 
 new Text()
   .handle(() => {
@@ -53,31 +53,15 @@ new Text()
   });
 
 new Text()
-  .source('./filename')
-  .exists((exists) => exists)
-  .handle(() => {
-    // won't call when not exists
-  });
-
-new Text()
   .logger('testing 1') // √ testing 1
   .handle(() => {
     throw new Error('fail');
   })
   .logger('testing 2'); // × testing 2
-```
 
-```cjs
-const { Text } = require('fs-chain');
-
-// base url for relative file resolve
-new Text(BaseUrl).source('./');
-```
-
-```mjs
-import { Text } from 'fs-chain';
-
-// passing `import.meta.url` is es modules
-// base url for relative file resolve
-new Text(import.meta.url).source('./');
+// base url
+new Text((BaseUrl = process.cwd())).source('./');
+new Text(__dirname).source('./');
+new Text(__filename).source('../');
+new Text(import.meta.url).source('../');
 ```

@@ -1,7 +1,8 @@
-const { Worker } = require('worker_threads');
-const { resolve } = require('path');
 const test = require('ava');
-const { Text: Chain } = require('..');
+const slash = require('slash');
+const { Worker } = require('worker_threads');
+
+const { Text: Chain } = require('../index.cjs');
 
 test('empty', (t) => {
   try {
@@ -12,16 +13,18 @@ test('empty', (t) => {
 });
 
 test.cb('message', (t) => {
-  const worker = new Worker(resolve(__dirname, 'fixture/logger.mjs'), {
-    stdout: true,
-  });
+
+
+  const worker = new Worker(
+    new URL('fixture/logger.mjs', slash(__filename)).toString(),
+    {
+      stdout: true,
+    },
+  );
 
   let count = 0;
   worker.stdout.on('data', (data) => {
     const line = data.toString().trim();
-
-    t.log(line);
-
     count += 1;
     if (count === 1) {
       t.is(line, '√ testing 1');

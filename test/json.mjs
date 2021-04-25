@@ -6,50 +6,44 @@ import utils from './helper/utils.cjs';
 
 const { remove, readJson: read, readText } = utils;
 
-const initFile = '../temp/init.json';
-const newFile = '../temp/new.json';
+const initFile = './temp/init.json';
+const newFile = './temp/new.json';
 
 const initData = { init: 'sample' };
 const changedData = { changed: 'sample' };
 
-remove(initFile, import.meta.url);
-remove(newFile, import.meta.url);
+remove(initFile);
+remove(newFile);
 
 function convert(data) {
   return Object.fromEntries(Object.entries(data).reverse());
 }
 
 test.serial('create', async (t) => {
-  await new Chain(import.meta.url).handle(() => initData).output(initFile);
-  t.deepEqual(read(initFile, import.meta.url), initData);
+  await new Chain().handle(() => initData).output(initFile);
+  t.deepEqual(read(initFile), initData);
 });
 
 test.serial('copy', async (t) => {
-  await new Chain(import.meta.url).source(initFile).output(newFile);
-  t.deepEqual(read(newFile, import.meta.url), initData);
+  await new Chain().source(initFile).output(newFile);
+  t.deepEqual(read(newFile), initData);
 });
 
 test.serial('edit', async (t) => {
-  await new Chain(import.meta.url)
+  await new Chain()
     .source(initFile)
     .handle(() => changedData)
     .output();
-  t.deepEqual(read(initFile, import.meta.url), changedData);
+  t.deepEqual(read(initFile), changedData);
 });
 
 test.serial('transfer', async (t) => {
-  await new Chain(import.meta.url)
-    .source(initFile)
-    .handle(convert)
-    .output(newFile);
-  t.deepEqual(
-    convert(read(initFile, import.meta.url)),
-    read(newFile, import.meta.url),
-  );
+  await new Chain().source(initFile).handle(convert).output(newFile);
+  t.deepEqual(convert(read(initFile)), read(newFile));
 });
 
 test.serial('nesting', async (t) => {
-  await new Chain(import.meta.url)
+  await new Chain()
     .source(initFile)
     .handle(convert)
     .output()
@@ -57,18 +51,15 @@ test.serial('nesting', async (t) => {
     .handle(convert)
     .output(newFile);
 
-  t.deepEqual(read(initFile, import.meta.url), read(newFile, import.meta.url));
+  t.deepEqual(read(initFile), read(newFile));
 });
 
 test.serial('pretty', async (t) => {
-  await new Chain(import.meta.url)
+  await new Chain()
     .handle(() => initData)
     .config({ pretty: true })
     .output(initFile);
 
-  t.deepEqual(read(initFile, import.meta.url), initData);
-  t.deepEqual(
-    readText(initFile, import.meta.url).trim(),
-    JSON.stringify(initData, null, 2),
-  );
+  t.deepEqual(read(initFile), initData);
+  t.deepEqual(readText(initFile).trim(), JSON.stringify(initData, null, 2));
 });

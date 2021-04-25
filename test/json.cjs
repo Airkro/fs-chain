@@ -1,10 +1,13 @@
 const test = require('ava');
 
-const { remove, readJson: read, readText } = require('./helper/utils.cjs');
-const { Json: Chain } = require('..');
+const { Json: Chain } = require('../index.cjs');
 
-const initFile = '../temp/init.json';
-const newFile = '../temp/new.json';
+const utils = require('./helper/utils.cjs');
+
+const { remove, readJson: read, readText } = utils;
+
+const initFile = './temp/init.json';
+const newFile = './temp/new.json';
 
 const initData = { init: 'sample' };
 const changedData = { changed: 'sample' };

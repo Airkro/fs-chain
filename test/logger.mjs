@@ -1,4 +1,5 @@
 import test from 'ava';
+import slash from 'slash';
 import { Worker } from 'worker_threads';
 
 import { Text as Chain } from '../index.cjs';
@@ -10,8 +11,11 @@ test('empty', (t) => {
     t.is(error.message, 'message cannot be empty');
   }
 });
+
+const __filename = import.meta.url;
+
 test.cb('message', (t) => {
-  const worker = new Worker(new URL('./fixture/logger.mjs', import.meta.url), {
+  const worker = new Worker(new URL('fixture/logger.mjs', __filename), {
     stdout: true,
   });
 
