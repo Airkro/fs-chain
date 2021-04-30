@@ -1,6 +1,7 @@
-import { Text as Chain } from '../../index.cjs';
+/* globals require */
+const { Text: Chain } = require('../../index.cjs');
 
-new Chain(import.meta.url)
+new Chain()
   .logger('testing 1')
   .handle(() => {
     throw new Error('fail');

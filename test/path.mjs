@@ -1,5 +1,5 @@
-import { dirname } from 'path';
 import test from 'ava';
+import { dirname } from 'path';
 
 import { Text as Chain } from '../index.cjs';
 
@@ -30,22 +30,22 @@ test('absolute', async (t) => {
 
 test('relative', async (t) => {
   t.is(
-    read('../temp/init.txt', __filename),
-    await new Chain(__filename).source('../temp/init.txt'),
+    read('../../package.json', __filename),
+    await new Chain(__filename).source('../../package.json'),
   );
   await t.throwsAsync(
-    () => new Chain(__filename).source('../temp/init.txt.bk').action,
+    () => new Chain(__filename).source('../package.json.bk').action,
     {
       instanceOf: Error,
       code: 'ENOENT',
     },
   );
   t.is(
-    read('./temp/init.txt', __dirname),
-    await new Chain(__dirname).source('./temp/init.txt'),
+    read('../package.json', __dirname),
+    await new Chain(__dirname).source('../package.json'),
   );
   await t.throwsAsync(
-    () => new Chain(__dirname).source('./temp/init.txt.bk').action,
+    () => new Chain(__dirname).source('../package.json.bk').action,
     {
       instanceOf: Error,
       code: 'ENOENT',

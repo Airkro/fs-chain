@@ -1,5 +1,5 @@
 const test = require('ava');
-const slash = require('slash');
+const { resolve } = require('path');
 const { Worker } = require('worker_threads');
 
 const { Text: Chain } = require('../index.cjs');
@@ -13,14 +13,9 @@ test('empty', (t) => {
 });
 
 test.cb('message', (t) => {
-
-
-  const worker = new Worker(
-    new URL('fixture/logger.mjs', slash(__filename)).toString(),
-    {
-      stdout: true,
-    },
-  );
+  const worker = new Worker(resolve(__dirname, 'fixture/logger.js'), {
+    stdout: true,
+  });
 
   let count = 0;
   worker.stdout.on('data', (data) => {

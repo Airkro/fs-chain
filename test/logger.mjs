@@ -1,5 +1,6 @@
 import test from 'ava';
-import slash from 'slash';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
 import { Worker } from 'worker_threads';
 
 import { Text as Chain } from '../index.cjs';
@@ -12,10 +13,10 @@ test('empty', (t) => {
   }
 });
 
-const __filename = import.meta.url;
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 test.cb('message', (t) => {
-  const worker = new Worker(new URL('fixture/logger.mjs', __filename), {
+  const worker = new Worker(resolve(__dirname, 'fixture/logger.js'), {
     stdout: true,
   });
 

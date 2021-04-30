@@ -387,17 +387,17 @@
   dependencies:
     "@commitlint/config-conventional" "^12.1.1"
 
-"@nice-move/eslint-config-base@^0.5.34":
-  version "0.5.34"
-  resolved "https://registry.yarnpkg.com/@nice-move/eslint-config-base/-/eslint-config-base-0.5.34.tgz#ab9d81b259f72214cd2b0f7ad733ea140c918cc6"
-  integrity sha512-tlgUNif5Jkmqrnwq6HVuZGKwbDdy8IeKeu4s5nBIRKaJ5kq7RQyShwilD6K/mX8SrlIaIZEJ851FxYZCKm+4HA==
+"@nice-move/eslint-config-base@^0.5.35":
+  version "0.5.35"
+  resolved "https://registry.yarnpkg.com/@nice-move/eslint-config-base/-/eslint-config-base-0.5.35.tgz#fd3b9de721f985db6d48dcbbd9bdd577c3f4a732"
+  integrity sha512-835KNkz8WuefF3xKo8EgYub8a5KjF0JunxAAL8AHbO1qE9pEBi2jnvZL+oLtFPH/ym7xD4oixNJgqo3p60UkdA==
   dependencies:
     eslint-config-airbnb-base "^14.2.1"
     eslint-config-prettier "^8.3.0"
     eslint-plugin-eslint-comments "^3.2.0"
     eslint-plugin-html "^6.1.2"
     eslint-plugin-import "^2.22.1"
-    eslint-plugin-markdown "^2.0.1"
+    eslint-plugin-markdown "^2.1.0"
     eslint-plugin-node "^11.1.0"
     eslint-plugin-promise "^5.1.0"
     eslint-plugin-unicorn "^31.0.0"
@@ -1874,12 +1874,12 @@ eslint-plugin-import@^2.22.1:
     resolve "^1.17.0"
     tsconfig-paths "^3.9.0"
 
-eslint-plugin-markdown@^2.0.1:
-  version "2.0.1"
-  resolved "https://mirrors.cloud.tencent.com/npm/eslint-plugin-markdown/-/eslint-plugin-markdown-2.0.1.tgz#10567fd38c564462482e944a250ee6d0806826c4"
-  integrity sha512-w05C86QOtESVqK1klvH8vKVc1gUfPqRWD/PDIsuiaW5kUb7/UQAaajQMGg/BZloTV4N+IfywhJ5uMQIR5vzAkQ==
+eslint-plugin-markdown@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-markdown/-/eslint-plugin-markdown-2.1.0.tgz#1fee34a058e299bd51f3393553bf7f92f3fa167c"
+  integrity sha512-Rqw7tosArdlzXcR/xJGW3Er9gRiF7iE+QEMEm7hZZ/feZjUf8xCaGQJgB1nzs9yVhJnUeiAcj5TXLLfKMbp3DQ==
   dependencies:
-    remark-parse "^5.0.0"
+    remark-parse "^7.0.0"
     unified "^6.1.2"
 
 eslint-plugin-node@^11.1.0:
@@ -1926,25 +1926,6 @@ eslint-plugin-sort-class-members@^1.11.0:
   version "1.11.0"
   resolved "https://mirrors.cloud.tencent.com/npm/eslint-plugin-sort-class-members/-/eslint-plugin-sort-class-members-1.11.0.tgz#4290c57eba8991521fbca3430e002da8ab860729"
   integrity sha512-kobZtUOyzyYVotc/GDnlmQ6sSaxYuVElwEowD5RQ6Kajq4Lfb3CPE1THaXbDl97HLNthThRZWtdNx1GrFhCm7Q==
-
-eslint-plugin-unicorn@^30.0.0:
-  version "30.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-30.0.0.tgz#45d3d138f444eff527e8c00f7a9299bcfcb5051b"
-  integrity sha512-ZKbE48Ep99z/3geLpkBfv+jNrzr2k7bLqCC/RfZOekZzAvn2/ECDE/d8zGdW1YxHmIC9pevQvm8Pl89v9GEIVw==
-  dependencies:
-    ci-info "^3.1.1"
-    clean-regexp "^1.0.0"
-    eslint-template-visitor "^2.3.2"
-    eslint-utils "^2.1.0"
-    eslint-visitor-keys "^2.0.0"
-    import-modules "^2.1.0"
-    lodash "^4.17.21"
-    pluralize "^8.0.0"
-    read-pkg-up "^7.0.1"
-    regexp-tree "^0.1.23"
-    reserved-words "^0.1.2"
-    safe-regex "^2.1.1"
-    semver "^7.3.5"
 
 eslint-plugin-unicorn@^31.0.0:
   version "31.0.0"
@@ -2275,13 +2256,22 @@ flatted@^3.1.0:
   resolved "https://mirrors.tencent.com/npm/flatted/-/flatted-3.1.1.tgz#c4b489e80096d9df1dfc97c79871aea7c617c469"
   integrity sha512-zAoAQiudy+r5SvnSw3KJy5os/oRJYHzrzja/tBDqrZtNhUw8bt6y8OBzMWcjWr+8liV8Eb6yOhw8WZ7VFZ5ZzA==
 
-fs-chain@^5.2.0, fs-chain@^5.3.0:
+fs-chain@^5.2.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/fs-chain/-/fs-chain-5.3.0.tgz#7e346e160449c6e91b8864ad10a013fe25b79f08"
   integrity sha512-dUEx6AXcJ7mwDzJppNm6WxJOJTWcDOoZYwgXvSkXroV51B3RUk1rBjkIRSpAKqK2tv3sDZeyUla07PqVltlrCQ==
   dependencies:
     chalk "^4.1.1"
     fs-extra "^9.1.0"
+
+fs-chain@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/fs-chain/-/fs-chain-6.0.0.tgz#bc96f82c94d15734556e1c48aa966c4da72714a5"
+  integrity sha512-Pz1alZog3l3pwXxdq5ESqONoMRAK6KILdoRhXXnMhPnGcdrkURGktvtZ76tPQbP7h4URMoqGh+aGYiKI0Ey24w==
+  dependencies:
+    chalk "^4.1.1"
+    fs-extra "^9.1.0"
+    slash "^3.0.0"
 
 fs-extra@^8.1.0:
   version "8.1.0"
@@ -2322,10 +2312,10 @@ functional-red-black-tree@^1.0.1:
   resolved "https://mirrors.tencent.com/npm/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-garou@^0.1.24:
-  version "0.1.24"
-  resolved "https://registry.yarnpkg.com/garou/-/garou-0.1.24.tgz#1850e9969e564918bdc16e1eee7ff85affcfd42b"
-  integrity sha512-8kSWKnFYgqPL3P3wgWkMCIc/3+c+/qX1Tqh7ZQeXNPHPibYE6KcbQ4+40qJHmzMX+SJUvAs4OLK0G9VLkzUZJA==
+garou@^0.1.25:
+  version "0.1.25"
+  resolved "https://registry.yarnpkg.com/garou/-/garou-0.1.25.tgz#ba5700d1aee75cacf6f643976fb6ad451d7a744e"
+  integrity sha512-7ueXlQlE0URW+RvZI3lJxe2uBYszaITmD99Fm8Cmvt2XCpfHcCdOFdpANh+pU66Thgloyr9k2onQXMkZ1BV1Xg==
   dependencies:
     cheetor "^0.8.0"
     eslint "^7.25.0"
@@ -2334,9 +2324,9 @@ garou@^0.1.24:
     eslint-plugin-react "^7.23.2"
     eslint-plugin-simple-import-sort "^7.0.0"
     eslint-plugin-sort-class-members "^1.11.0"
-    eslint-plugin-unicorn "^30.0.0"
+    eslint-plugin-unicorn "^31.0.0"
     eslint-plugin-vue "^7.9.0"
-    fs-chain "^5.3.0"
+    fs-chain "^6.0.0"
     globby "^11.0.3"
     rehype "^11.0.0"
     rehype-sort-attributes "^3.0.2"
@@ -4486,10 +4476,10 @@ rehype@^11.0.0:
     rehype-stringify "^8.0.0"
     unified "^9.0.0"
 
-remark-parse@^5.0.0:
-  version "5.0.0"
-  resolved "https://mirrors.tencent.com/npm/remark-parse/-/remark-parse-5.0.0.tgz#4c077f9e499044d1d5c13f80d7a98cf7b9285d95"
-  integrity sha512-b3iXszZLH1TLoyUzrATcTQUZrwNl1rE70rVdSruJFlDaJ9z5aMkhrG43Pp68OgfHndL/ADz6V69Zow8cTQu+JA==
+remark-parse@^7.0.0:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/remark-parse/-/remark-parse-7.0.2.tgz#41e7170d9c1d96c3d32cf1109600a9ed50dba7cf"
+  integrity sha512-9+my0lQS80IQkYXsMA8Sg6m9QfXYJBnXjWYN5U+kFc5/n69t+XZVXU/ZBYr3cYH8FheEGf1v87rkFDhJ8bVgMA==
   dependencies:
     collapse-white-space "^1.0.2"
     is-alphabetical "^1.0.0"

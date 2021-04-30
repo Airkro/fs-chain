@@ -1,19 +1,24 @@
 /* eslint-disable promise/no-nesting */
 const { readFile, readJson, outputFile, outputJson } = require('fs-extra');
 const { green, red } = require('chalk');
-const { isAbsolute } = require('path');
+const { isAbsolute, resolve } = require('path');
 const { fileURLToPath } = require('url');
-const slash = require('slash');
+
+function pure(path) {
+  return path.startsWith('file:') ? fileURLToPath(path) : path;
+}
 
 function resolver(path, root = `${process.cwd()}/`) {
+  const purePath = pure(path);
+  const pureRoot = pure(root);
+
   let io;
-  if (isAbsolute(path)) {
-    io = path;
+  if (isAbsolute(purePath)) {
+    io = purePath;
   } else if (path.startsWith('~')) {
     io = require.resolve(path.replace(/^~/, ''));
   } else {
-    const url = new URL(slash(path), slash(root));
-    io = url.protocol === 'file:' ? fileURLToPath(url) : url.toString();
+    io = resolve(pureRoot, purePath);
   }
   return io;
 }
@@ -41,9 +46,7 @@ function Creator({ init, read, write }) {
         .then(() => {
           this.source = resolver(path, this.root);
         })
-        .then(() => {
-          return read(this.source);
-        });
+        .then(() => read(this.source));
 
       return this;
     }
