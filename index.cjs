@@ -1,8 +1,10 @@
 /* eslint-disable promise/no-nesting */
-const { readFile, readJson, outputFile, outputJson } = require('fs-extra');
+const fs = require('fs-extra');
 const { green, red } = require('chalk');
 const { isAbsolute, resolve } = require('path');
 const { fileURLToPath } = require('url');
+
+const { readFile, readJson, outputFile, outputJson } = fs;
 
 function pure(path) {
   return path.startsWith('file:') ? fileURLToPath(path) : path;
@@ -158,4 +160,5 @@ module.exports = {
   Text,
   TextToJson,
   resolver,
+  fs,
 };
