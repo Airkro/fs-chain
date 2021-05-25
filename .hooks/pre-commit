@@ -1,4 +1,4 @@
 #!/bin/sh
 
-yarn nice-move lint
-yarn ava --fail-fast -c 1
+yarn lint
+yarn test

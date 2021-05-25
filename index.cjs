@@ -40,13 +40,13 @@ function Creator({ init, read, write }) {
       return this;
     }
 
-    source(path) {
+    source(path, root = this.root) {
       if (!path) {
         throw new Error('path cannot be empty');
       }
       this.action = this.action
         .then(() => {
-          this.source = resolver(path, this.root);
+          this.source = resolver(path, root);
         })
         .then(() => read(this.source));
 
@@ -58,9 +58,9 @@ function Creator({ init, read, write }) {
       return this;
     }
 
-    output(path) {
+    output(path, root = this.root) {
       this.action = this.action.then((data) => {
-        const io = resolver(path === undefined ? this.source : path, this.root);
+        const io = resolver(path === undefined ? this.source : path, root);
         if (!io) {
           throw new Error('path cannot be empty');
         }
