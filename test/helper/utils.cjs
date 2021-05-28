@@ -5,7 +5,7 @@ const {
   removeSync,
 } = require('fs-extra');
 
-const { resolver } = require('../../lib.cjs');
+const { resolver } = require('../../lib/utils.cjs');
 
 module.exports = {
   exists: (path, root) => existsSync(resolver(path, root)),

@@ -6,8 +6,8 @@ const utils = require('./helper/utils.cjs');
 
 const { remove, readText: read } = utils;
 
-const initFile = './temp/init.txt';
-const newFile = './temp/new.txt';
+const initFile = './.cache/init.txt';
+const newFile = './.cache/new.txt';
 
 const initData = 'init:sample';
 const changedData = 'changed:sample';

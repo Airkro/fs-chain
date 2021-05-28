@@ -6,8 +6,8 @@ import utils from './helper/utils.cjs';
 
 const { remove, readJson: read, readText } = utils;
 
-const initFile = './temp/init.json';
-const newFile = './temp/new.json';
+const initFile = './.cache/init.json';
+const newFile = './.cache/new.json';
 
 const initData = { init: 'sample' };
 const changedData = { changed: 'sample' };
