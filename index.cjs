@@ -1,34 +1,17 @@
 /* eslint-disable promise/no-nesting */
 const fs = require('fs-extra');
 const { green, red } = require('chalk');
-const { isAbsolute, resolve } = require('path');
-const { fileURLToPath } = require('url');
+
+const { resolver, ChainError } = require('./lib.cjs');
 
 const { readFile, readJson, outputFile, outputJson } = fs;
-
-function pure(path) {
-  return path.startsWith('file:') ? fileURLToPath(path) : path;
-}
-
-function resolver(path, root = `${process.cwd()}/`) {
-  const purePath = pure(path);
-  const pureRoot = pure(root);
-
-  let io;
-  if (isAbsolute(purePath)) {
-    io = purePath;
-  } else if (path.startsWith('~')) {
-    io = require.resolve(path.replace(/^~/, ''));
-  } else {
-    io = resolve(pureRoot, purePath);
-  }
-  return io;
-}
 
 function Creator({ init, read, write }) {
   return class Chain {
     constructor(root) {
-      this.root = root;
+      if (root) {
+        this.root = root;
+      }
       this.action = Promise.resolve(init);
       return this;
     }
@@ -82,27 +65,24 @@ function Creator({ init, read, write }) {
           return io;
         },
         (error) => {
-          if (error.message !== 'skip') {
-            console.log(red('×'), ...message);
-          }
+          console.log(red('×'), ...message);
           throw error;
         },
       );
       return this;
     }
 
-    then(callback) {
-      return this.action.then(callback);
+    then(resolve, reject) {
+      return this.action.then(
+        resolve,
+        reject ? (error) => reject(new ChainError(error, this)) : undefined,
+      );
     }
 
     catch(callback) {
-      return this.action
-        .catch((error) => {
-          if (error.message !== 'skip') {
-            throw error;
-          }
-        })
-        .catch(callback);
+      return this.action.catch((error) =>
+        callback(new ChainError(error, this)),
+      );
     }
 
     finally(callback) {

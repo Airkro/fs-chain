@@ -2,15 +2,7 @@ import test from 'ava';
 
 import { Text as Chain } from '../index.cjs';
 
-import utils from './helper/utils.cjs';
-
-const { remove, exists } = utils;
-
-const initFile = '../temp/skip.json';
-
-remove(initFile);
-
-test.serial('skip', async (t) => {
+test.serial('next error', async (t) => {
   const message = await new Chain()
     .handle(() => {
       throw new Error('first');
@@ -18,11 +10,7 @@ test.serial('skip', async (t) => {
     .handle(() => {
       throw new Error('second');
     })
-    .action.catch((error) => error.message);
+    .catch((error) => error.message);
 
   t.is(message, 'first');
-});
-
-test.serial('skipped', (t) => {
-  t.false(exists(initFile));
 });
