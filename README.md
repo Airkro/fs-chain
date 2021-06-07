@@ -24,7 +24,7 @@ npm install fs-chain --save-dev
 const { Text, Json } = require('fs-chain');
 
 new Text() // create file
-  .handle(() => 'text:sample')
+  .onDone(() => 'text:sample')
   .output('./filename');
 
 new Json() // copy file
@@ -33,34 +33,34 @@ new Json() // copy file
 
 new Text() // edit file
   .source('./filename')
-  .handle((data) => data.trim())
+  .onDone((data) => data.trim())
   .output();
 
 new Json() // transfer file
   .source('./old-filename')
-  .handle((data) => data.value)
+  .onDone((data) => data.value)
   .output('./new-filename');
 
 new Json().source('~qss'); // require.resolve
 
 new Text()
-  .handle(() => {
+  .onFail(() => {
     // skip following step
     throw new Error('skip');
   })
-  .handle(() => {
+  .onDone(() => {
     // other step
   });
 
 new Text()
   .logger('testing 1') // √ testing 1
-  .handle(() => {
+  .onDone(() => {
     throw new Error('fail');
   })
   .logger('testing 2'); // × testing 2
 
 // base url
-new Text((BaseUrl = process.cwd())).source('./');
+new Text(process.cwd()).source('./');
 new Text(__dirname).source('./');
 new Text(__filename).source('../');
 new Text(import.meta.url).source('../');

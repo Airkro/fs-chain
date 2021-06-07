@@ -1,6 +1,6 @@
 {
   "name": "fs-chain",
-  "version": "7.2.1",
+  "version": "8.0.1",
   "description": "A file I/O tool chain",
   "license": "MIT",
   "author": {
@@ -27,7 +27,7 @@
   },
   "main": "index.cjs",
   "files": [
-    "lib.cjs"
+    "lib"
   ],
   "scripts": {
     "lint": "nice-move lint",
@@ -46,10 +46,10 @@
     "@nice-move/prettier-config": "^0.4.4",
     "ava": "^3.15.0",
     "commitlint": "^12.1.4",
-    "eslint": "^7.27.0",
+    "eslint": "^7.28.0",
     "eslint-plugin-ava": "^12.0.0",
     "garou": "^0.1.28",
-    "prettier": "^2.3.0"
+    "prettier": "^2.3.1"
   },
   "engines": {
     "node": "^12.15.0 || ^14.15.3"

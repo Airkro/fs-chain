@@ -20,7 +20,7 @@ function convert(data) {
 }
 
 test.serial('create', async (t) => {
-  await new Chain().handle(() => initData).output(initFile);
+  await new Chain().onDone(() => initData).output(initFile);
   t.deepEqual(read(initFile), initData);
 });
 
@@ -32,23 +32,23 @@ test.serial('copy', async (t) => {
 test.serial('edit', async (t) => {
   await new Chain()
     .source(initFile)
-    .handle(() => changedData)
+    .onDone(() => changedData)
     .output();
   t.deepEqual(read(initFile), changedData);
 });
 
 test.serial('transfer', async (t) => {
-  await new Chain().source(initFile).handle(convert).output(newFile);
+  await new Chain().source(initFile).onDone(convert).output(newFile);
   t.deepEqual(convert(read(initFile)), read(newFile));
 });
 
 test.serial('nesting', async (t) => {
   await new Chain()
     .source(initFile)
-    .handle(convert)
+    .onDone(convert)
     .output()
-    .handle(convert)
-    .handle(convert)
+    .onDone(convert)
+    .onDone(convert)
     .output(newFile);
 
   t.deepEqual(read(initFile), read(newFile));
