@@ -36,7 +36,7 @@
     "test": "ava --fail-fast -c 1"
   },
   "dependencies": {
-    "chalk": "^4.1.1",
+    "chalk": "^4.1.2",
     "fs-extra": "^10.0.0"
   },
   "devDependencies": {
