@@ -1,6 +1,6 @@
 {
   "name": "fs-chain",
-  "version": "8.1.1",
+  "version": "8.1.2",
   "description": "A file I/O tool chain",
   "license": "MIT",
   "author": {
@@ -30,9 +30,9 @@
     "lib"
   ],
   "scripts": {
-    "lint": "nice-move lint",
+    "lint:staged": "nice-move lint staged",
     "prepare": "git config core.hooksPath .githooks",
-    "prepublishOnly": "npm run lint && npm test",
+    "prepublishOnly": "npm run lint:staged && npm test",
     "test": "ava --fail-fast -c 1"
   },
   "dependencies": {
@@ -40,15 +40,14 @@
     "fs-extra": "^10.0.0"
   },
   "devDependencies": {
-    "@nice-move/cli": "^0.6.0",
+    "@nice-move/cli": "^0.7.0",
     "@nice-move/commitlint-config": "^0.5.0",
-    "@nice-move/eslint-config-base": "^0.6.0",
-    "@nice-move/prettier-config": "^0.5.1",
+    "@nice-move/eslint-config-base": "^0.6.1",
+    "@nice-move/prettier-config": "^0.5.2",
     "ava": "^3.15.0",
-    "commitlint": "^13.2.1",
-    "eslint": "^7.32.0",
+    "eslint": "^8.9.0",
     "eslint-plugin-ava": "^13.2.0",
-    "garou": "^0.3.8",
+    "garou": "^0.4.0",
     "prettier": "^2.5.1"
   },
   "engines": {
@@ -57,9 +56,6 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  },
-  "commitlint": {
-    "extends": "@nice-move/commitlint-config"
   },
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"
