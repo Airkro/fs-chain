@@ -1,4 +1,4 @@
-/* eslint-disable import/no-commonjs */
+/* eslint-disable import/no-commonjs, unicorn/prefer-module */
 /* globals require */
 const { Text: Chain } = require('../../index.cjs');
 

@@ -1,7 +1,9 @@
-const test = require('ava');
-const { resolve } = require('path');
-const { Worker } = require('worker_threads');
+'use strict';
 
+// eslint-disable-next-line import/no-unresolved
+const test = require('ava');
+const { join } = require('path');
+const { Worker } = require('worker_threads');
 const { Text: Chain } = require('../index.cjs');
 
 test('empty', (t) => {
@@ -12,23 +14,32 @@ test('empty', (t) => {
   }
 });
 
-test.cb('message', (t) => {
-  const worker = new Worker(resolve(__dirname, 'fixture/logger.js'), {
-    stdout: true,
+test('message', async (t) => {
+  const io = new Promise((resolve) => {
+    const worker = new Worker(join(__dirname, 'fixture/logger.js'), {
+      stdout: true,
+      env: { FORCE_COLOR: 0 },
+    });
+
+    let count = 0;
+
+    worker.stdout.on('data', (data) => {
+      const line = data.toString().trim();
+      count += 1;
+
+      if (count === 1) {
+        t.is(line, '√ testing 1');
+      }
+
+      if (count === 2) {
+        t.is(line, '× testing 2');
+
+        worker.terminate();
+
+        resolve();
+      }
+    });
   });
 
-  let count = 0;
-  worker.stdout.on('data', (data) => {
-    const line = data.toString().trim();
-    count += 1;
-    if (count === 1) {
-      t.is(line, '√ testing 1');
-    }
-    if (count === 2) {
-      t.is(line, '× testing 2');
-
-      worker.terminate();
-      t.end();
-    }
-  });
+  await io;
 });

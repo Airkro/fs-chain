@@ -1,6 +1,6 @@
 {
   "name": "fs-chain",
-  "version": "8.1.2",
+  "version": "8.2.1",
   "description": "A file I/O tool chain",
   "license": "MIT",
   "author": {
@@ -40,15 +40,14 @@
     "fs-extra": "^10.0.1"
   },
   "devDependencies": {
-    "@nice-move/cli": "^0.7.0",
-    "@nice-move/commitlint-config": "^0.5.0",
-    "@nice-move/eslint-config-base": "^0.6.1",
-    "@nice-move/prettier-config": "^0.5.2",
-    "ava": "^3.15.0",
-    "eslint": "^8.9.0",
+    "@nice-move/cli": "^0.7.1",
+    "@nice-move/eslint-config-base": "^0.6.4",
+    "@nice-move/prettier-config": "^0.5.4",
+    "ava": "^4.1.0",
+    "eslint": "^8.12.0",
     "eslint-plugin-ava": "^13.2.0",
-    "garou": "^0.4.0",
-    "prettier": "^2.5.1"
+    "garou": "^0.4.4",
+    "prettier": "^2.6.1"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >=16.13.0"
