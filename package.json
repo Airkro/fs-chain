@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "chalk": "^4.1.2",
-    "fs-extra": "^10.0.1"
+    "fs-extra": "^10.1.0"
   },
   "devDependencies": {
     "@nice-move/cli": "^0.7.1",
