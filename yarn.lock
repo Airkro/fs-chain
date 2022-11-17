@@ -57,7 +57,7 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@nice-move/cli@^0.10.0":
+"@nice-move/cli@^0.10.1":
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/@nice-move/cli/-/cli-0.10.1.tgz#56a239ba368d7b4173d23697083881f62988c9a8"
   integrity sha512-hj3gbo7URc0nDJFRsrTBP3HIgVapTaQNywmlpCo+hktQuaR36GWo6wpPI/8SjOhLHsLBkDD9JuYKagZ4dnurCw==
@@ -65,7 +65,7 @@
     eslint-formatter-pretty "^4.1.0"
     stylelint-formatter-pretty "^3.1.0"
 
-"@nice-move/eslint-config-base@^0.9.0":
+"@nice-move/eslint-config-base@^0.9.1":
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/@nice-move/eslint-config-base/-/eslint-config-base-0.9.1.tgz#d676d0ee26126b91bc74309a8b8e7183bd8b6932"
   integrity sha512-eePRI5pEWTJXJeTQRDAcZchIMWtWlGcxYVVu8gH0FzvqAn14EysyMCQoqFVWUZ4RNWLYSmn9NMV40CeiqxzksQ==
