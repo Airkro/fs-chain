@@ -64,13 +64,13 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@nice-move/cli@^0.10.1":
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/@nice-move/cli/-/cli-0.10.1.tgz#56a239ba368d7b4173d23697083881f62988c9a8"
-  integrity sha512-hj3gbo7URc0nDJFRsrTBP3HIgVapTaQNywmlpCo+hktQuaR36GWo6wpPI/8SjOhLHsLBkDD9JuYKagZ4dnurCw==
+"@nice-move/cli@^0.10.2":
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/@nice-move/cli/-/cli-0.10.2.tgz#a6b026c8418d4ba13f4978adc9014d91cf620ea0"
+  integrity sha512-8axf0vgt6lwCMAlrNeWrIBjkMWVFr0r3d1U3YvAHhoK9w3upebXlG0p2UvOkcJ1YENmxIz04ezLpLZo1nQxbcA==
   dependencies:
     eslint-formatter-pretty "^4.1.0"
-    stylelint-formatter-pretty "^3.1.0"
+    stylelint-formatter-pretty "^3.1.1"
 
 "@nice-move/eslint-config-base@^0.9.3":
   version "0.9.4"
@@ -365,7 +365,7 @@ ajv@^6.10.0, ajv@^6.12.4:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-ansi-escapes@4.x, ansi-escapes@^4.2.1:
+ansi-escapes@^4.2.1, ansi-escapes@~4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-4.3.2.tgz#6b2291d1db7d98b6521d5f1efa42d0f3a9feb65e"
   integrity sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==
@@ -585,14 +585,6 @@ cbor@^8.1.0:
   dependencies:
     nofilter "^3.1.0"
 
-chalk@4.x, chalk@^4.0.0, chalk@^4.1.0, chalk@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.2.tgz#aac4e2b7734a740867aeb16bf02aad556a1e7a01"
-  integrity sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==
-  dependencies:
-    ansi-styles "^4.1.0"
-    supports-color "^7.1.0"
-
 chalk@^2.0.0:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
@@ -601,6 +593,14 @@ chalk@^2.0.0:
     ansi-styles "^3.2.1"
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
+
+chalk@^4.0.0, chalk@^4.1.0, chalk@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.2.tgz#aac4e2b7734a740867aeb16bf02aad556a1e7a01"
+  integrity sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==
+  dependencies:
+    ansi-styles "^4.1.0"
+    supports-color "^7.1.0"
 
 chalk@^5.0.1:
   version "5.1.2"
@@ -1982,7 +1982,7 @@ lodash@^4.13.1, lodash@^4.17.15, lodash@^4.17.21:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
-log-symbols@4.x, log-symbols@^4.0.0:
+log-symbols@^4.0.0, log-symbols@~4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-4.1.0.tgz#3fbdbb95b4683ac9fc785111e792e558d4abd503"
   integrity sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==
@@ -2349,6 +2349,11 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
+picocolors@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
+  integrity sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==
+
 picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
@@ -2369,7 +2374,7 @@ pkg-dir@^5.0.0:
   dependencies:
     find-up "^5.0.0"
 
-plur@4.x, plur@^4.0.0:
+plur@^4.0.0, plur@~4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/plur/-/plur-4.0.0.tgz#729aedb08f452645fe8c58ef115bf16b0a73ef84"
   integrity sha512-4UGewrYgqDFw9vV6zNV+ADmPAUAfJPKtGvb/VdpQAx25X5f3xXdGdyOEVFwkl8Hl/tl7+xbeHqSEM+D5/TirUg==
@@ -2678,7 +2683,7 @@ stack-utils@^2.0.5:
   dependencies:
     escape-string-regexp "^2.0.0"
 
-string-width@4.x, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
+string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3, string-width@~4.2.2:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -2745,16 +2750,16 @@ strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
 
-stylelint-formatter-pretty@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/stylelint-formatter-pretty/-/stylelint-formatter-pretty-3.1.0.tgz#abc227ee81d8a82b3eaf215aad1a189a9c5a9c49"
-  integrity sha512-tAXUYNJTiJgYAfi3AvBpDhYgv2vWoJ5PPLr8/H7GSKzD+5RexLEHwjgURZB0s4YTufg3dDO8oc5YEpOk/MCnvA==
+stylelint-formatter-pretty@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/stylelint-formatter-pretty/-/stylelint-formatter-pretty-3.1.1.tgz#978a5ae764df8c2046840f7b2bb691ac1efef203"
+  integrity sha512-sHsbwd/AzzKnldARIQkjDj6L5tGNOBs5vfIhMz40oLSaV+GW2RNYKYoqxtt6cgLf91OURXu0tI/l0fbQw7EVrg==
   dependencies:
-    ansi-escapes "4.x"
-    chalk "4.x"
-    log-symbols "4.x"
-    plur "4.x"
-    string-width "4.x"
+    ansi-escapes "~4.3.2"
+    log-symbols "~4.1.0"
+    picocolors "^1.0.0"
+    plur "~4.0.0"
+    string-width "~4.2.2"
 
 supertap@^3.0.1:
   version "3.0.1"
