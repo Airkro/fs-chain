@@ -64,10 +64,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@nice-move/cli@^0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@nice-move/cli/-/cli-0.10.2.tgz#a6b026c8418d4ba13f4978adc9014d91cf620ea0"
-  integrity sha512-8axf0vgt6lwCMAlrNeWrIBjkMWVFr0r3d1U3YvAHhoK9w3upebXlG0p2UvOkcJ1YENmxIz04ezLpLZo1nQxbcA==
+"@nice-move/cli@^0.10.3":
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/@nice-move/cli/-/cli-0.10.3.tgz#cbd37e1b22c51c3cf184fe73518ad006c59014dd"
+  integrity sha512-13inFEQxJJOWCJwkFmbs+qAqTl8jYKvVh/w4BsUZnQdeokqGTFmMn/fE8fEELbL3Fr2ErrogoYGyz7IjsYELgg==
   dependencies:
     eslint-formatter-pretty "^4.1.0"
     stylelint-formatter-pretty "^3.1.1"
