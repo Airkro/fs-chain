@@ -1,5 +1,6 @@
+import { dirname } from 'node:path';
+
 import test from 'ava';
-import { dirname } from 'path';
 
 import { Text as Chain } from '../index.cjs';
 

@@ -37,6 +37,7 @@ test.serial('first error', async (t) => {
     })
     .catch((error) => {
       t.log(error);
+
       return error.message;
     });
 

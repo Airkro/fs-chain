@@ -1,5 +1,6 @@
-const test = require('ava');
+'use strict';
 
+const test = require('ava');
 const { Text: Chain } = require('../index.cjs');
 
 test.serial('error', async (t) => {
@@ -37,6 +38,7 @@ test.serial('first error', async (t) => {
     })
     .catch((error) => {
       t.log(error);
+
       return error.message;
     });
 

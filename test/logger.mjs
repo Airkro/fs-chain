@@ -1,8 +1,7 @@
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
-import { Worker } from 'worker_threads';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { Worker } from 'node:worker_threads';
 
-// eslint-disable-next-line import/no-unresolved
 import test from 'ava';
 
 import { Text as Chain } from '../index.cjs';

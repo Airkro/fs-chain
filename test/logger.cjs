@@ -1,9 +1,8 @@
 'use strict';
 
-// eslint-disable-next-line import/no-unresolved
 const test = require('ava');
-const { join } = require('path');
-const { Worker } = require('worker_threads');
+const { join } = require('node:path');
+const { Worker } = require('node:worker_threads');
 const { Text: Chain } = require('../index.cjs');
 
 test('empty', (t) => {

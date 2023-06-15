@@ -59,9 +59,11 @@ new Text()
   })
   .logger('testing 2'); // × testing 2
 
-// base url
 new Text(process.cwd()).source('./');
 new Text(__dirname).source('./');
 new Text(__filename).source('../');
+```
+
+```mjs
 new Text(import.meta.url).source('../');
 ```

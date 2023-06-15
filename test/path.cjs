@@ -1,7 +1,7 @@
+'use strict';
+
 const test = require('ava');
-
 const { Text: Chain } = require('../index.cjs');
-
 const utils = require('./helper/utils.cjs');
 
 const { readText: read } = utils;
