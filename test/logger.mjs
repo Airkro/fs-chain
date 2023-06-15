@@ -30,11 +30,11 @@ test('message', async (t) => {
       count += 1;
 
       if (count === 1) {
-        t.is(line, '√ testing 1');
+        t.is(line, '✔ testing 1');
       }
 
       if (count === 2) {
-        t.is(line, '× testing 2');
+        t.is(line, '✘ testing 2');
 
         worker.terminate();
 
