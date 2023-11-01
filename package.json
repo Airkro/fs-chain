@@ -1,6 +1,6 @@
 {
   "name": "fs-chain",
-  "version": "8.2.2",
+  "version": "8.2.3",
   "description": "A file I/O tool chain",
   "license": "MIT",
   "author": {
@@ -32,7 +32,7 @@
   "scripts": {
     "lint:staged": "nice-move lint staged",
     "prepare": "nice-move git hooks",
-    "prepublishOnly": "npm run lint:staged && npm test",
+    "prepublishOnly": "pnpm run lint:staged && pnpm test",
     "test": "ava --fail-fast --no-worker-threads -c 1"
   },
   "dependencies": {
@@ -40,23 +40,24 @@
     "fs-extra": "^11.1.1"
   },
   "devDependencies": {
-    "@bring-it/npm": "^0.1.2",
-    "@nice-move/cli": "^0.10.8",
-    "@nice-move/eslint-config-base": "^0.9.13",
-    "@nice-move/prettier-config": "^0.8.1",
-    "ava": "^5.3.0",
-    "eslint": "^8.42.0",
+    "@bring-it/npm": "^0.3.9",
+    "@nice-move/cli": "^0.10.13",
+    "@nice-move/eslint-config-base": "^0.9.22",
+    "@nice-move/prettier-config": "^0.9.7",
+    "ava": "^5.3.1",
+    "eslint": "^8.52.0",
     "eslint-plugin-ava": "^14.0.0",
-    "garou": "^0.6.10",
-    "prettier": "^2.8.8"
+    "garou": "^0.6.17",
+    "prettier": "^3.0.3"
   },
   "engines": {
-    "node": "^16.15.0 || ^18.12.0"
+    "node": "^16.15.0 || ^18.12.0 || ^20.0.0"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
+  "packageManager": "pnpm@8.10.0",
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"
   },
