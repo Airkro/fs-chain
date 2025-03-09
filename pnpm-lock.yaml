@@ -16,11 +16,11 @@ importers:
         version: 11.3.0
     devDependencies:
       '@bring-it/cli':
-        specifier: ^0.9.9
-        version: 0.9.9
+        specifier: ^0.10.0
+        version: 0.10.0
       '@bring-it/npm':
         specifier: ^0.5.9
-        version: 0.5.9(@bring-it/cli@0.9.9)
+        version: 0.5.9(@bring-it/cli@0.10.0)
       '@nice-move/cli':
         specifier: ^0.11.16
         version: 0.11.21
@@ -137,9 +137,9 @@ packages:
     resolution: {integrity: sha512-Y3IR1cRnOxOCDvMmNiym7XpXQ93iGDDPHx+Zj+NM+rg0fBaShfQLkg+hKPaZCEvg5N/LeCo4+Rj/i3FuJsIQaw==}
     engines: {node: '>=6.9.0'}
 
-  '@bring-it/cli@0.9.9':
-    resolution: {integrity: sha512-/g5lDw3/x/JXrq7dxkGmBDGzCJpfnEjAs6JWHhIl5GR1y5QhNOipWxDfPpCAl7plAGis1d7/fXDGhjW57KinOw==}
-    engines: {node: '>=22.0.0 || ^18.20.0 || ^20.4.0'}
+  '@bring-it/cli@0.10.0':
+    resolution: {integrity: sha512-dYQRXLJ1fmH66rpeEjX9zDFcMqTiAshPkR7xHJQHoOXdQQWpbiV/MyDGJw2PhTCPuxLHaxh1MCZfctmq7M7nDw==}
+    engines: {node: '>=22.11.0 || ^20.18.1'}
     hasBin: true
 
   '@bring-it/npm@0.5.9':
@@ -2285,14 +2285,14 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
-  '@bring-it/cli@0.9.9':
+  '@bring-it/cli@0.10.0':
     dependencies:
       globby: 14.1.0
       yargs: 17.7.2
 
-  '@bring-it/npm@0.5.9(@bring-it/cli@0.9.9)':
+  '@bring-it/npm@0.5.9(@bring-it/cli@0.10.0)':
     dependencies:
-      '@bring-it/cli': 0.9.9
+      '@bring-it/cli': 0.10.0
 
   '@eslint-community/eslint-plugin-eslint-comments@4.4.1(eslint@8.57.1)':
     dependencies:
