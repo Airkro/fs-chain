@@ -1,5 +1,5 @@
-/* eslint-disable import/no-commonjs, unicorn/prefer-module */
-/* globals require */
+'use strict';
+
 const { Text: Chain } = require('../../index.cjs');
 
 new Chain()
