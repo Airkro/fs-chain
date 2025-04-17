@@ -1,7 +1,7 @@
 'use strict';
 
 const test = require('ava');
-const { Text: Chain } = require('../index.cjs');
+const { Text: Chain } = require('../lib/index.mjs');
 
 test.serial('error', async (t) => {
   const data = await new Chain()

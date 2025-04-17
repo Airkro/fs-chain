@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import { Json as Chain } from '../index.cjs';
+import { Json as Chain } from '../lib/index.mjs';
 
 import utils from './helper/utils.cjs';
 

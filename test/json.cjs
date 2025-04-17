@@ -1,7 +1,7 @@
 'use strict';
 
 const test = require('ava');
-const { Json: Chain } = require('../index.cjs');
+const { Json: Chain } = require('../lib/index.mjs');
 const utils = require('./helper/utils.cjs');
 
 const { remove, readJson: read, readText } = utils;

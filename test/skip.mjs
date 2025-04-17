@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import { Text as Chain } from '../index.cjs';
+import { Text as Chain } from '../lib/index.mjs';
 
 test.serial('error', async (t) => {
   const data = await new Chain()

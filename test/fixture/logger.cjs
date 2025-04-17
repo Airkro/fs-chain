@@ -1,6 +1,6 @@
 'use strict';
 
-const { Text: Chain } = require('../../index.cjs');
+const { Text: Chain } = require('../../lib/index.mjs');
 
 new Chain()
   .logger('testing 1')

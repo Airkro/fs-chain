@@ -3,7 +3,7 @@
 const { join } = require('node:path');
 const { Worker } = require('node:worker_threads');
 const test = require('ava');
-const { Text: Chain } = require('../index.cjs');
+const { Text: Chain } = require('../lib/index.mjs');
 
 test('empty', (t) => {
   try {
@@ -13,7 +13,7 @@ test('empty', (t) => {
   }
 });
 
-test.skip('message', async (t) => {
+test('message', async (t) => {
   const io = new Promise((resolve) => {
     const worker = new Worker(join(__dirname, 'fixture/logger.cjs'), {
       stdout: true,

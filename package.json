@@ -1,11 +1,10 @@
 {
   "name": "fs-chain",
-  "version": "9.0.0",
+  "version": "10.0.0",
   "description": "A file I/O tool chain",
   "license": "MIT",
   "author": {
-    "name": "Eric Chen",
-    "email": "airkro@qq.com"
+    "name": "Eric Chen"
   },
   "keywords": [
     "chain",
@@ -25,11 +24,11 @@
   "bugs": {
     "url": "https://github.com/airkro/fs-chain/issues"
   },
-  "main": "index.cjs",
+  "main": "lib/index.mjs",
   "files": [
     "lib"
   ],
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "lint:staged": "nice-move lint staged",
     "prepare": "nice-move git hooks",
@@ -43,13 +42,14 @@
   "devDependencies": {
     "@bring-it/cli": "^0.10.0",
     "@bring-it/npm": "^0.6.0",
-    "@nice-move/all-in-base": "^0.4.15",
+    "@nice-move/all-in-base": "^0.4.19",
     "ava": "^6.2.0",
-    "eslint": "^9.23.0",
+    "eslint": "^9.24.0",
     "garou": "^0.9.5",
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
   },
-  "packageManager": "pnpm@10.6.5",
+  "packageManager": "pnpm@10.8.1",
   "engines": {
     "node": ">=22.11.0 || ^20.18.0"
   },

@@ -4,7 +4,7 @@ import { Worker } from 'node:worker_threads';
 
 import test from 'ava';
 
-import { Text as Chain } from '../index.cjs';
+import { Text as Chain } from '../lib/index.mjs';
 
 test('empty', (t) => {
   try {
@@ -16,7 +16,7 @@ test('empty', (t) => {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-test.skip('message', async (t) => {
+test('message', async (t) => {
   const io = new Promise((resolve) => {
     const worker = new Worker(join(__dirname, 'fixture/logger.cjs'), {
       stdout: true,

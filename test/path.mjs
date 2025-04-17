@@ -2,7 +2,7 @@ import { dirname } from 'node:path';
 
 import test from 'ava';
 
-import { Text as Chain } from '../index.cjs';
+import { Text as Chain } from '../lib/index.mjs';
 
 import utils from './helper/utils.cjs';
 
