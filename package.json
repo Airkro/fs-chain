@@ -42,10 +42,10 @@
   "devDependencies": {
     "@bring-it/cli": "^0.10.0",
     "@bring-it/npm": "^0.6.0",
-    "@nice-move/all-in-base": "^0.4.19",
+    "@nice-move/all-in-base": "^0.4.28",
     "ava": "^6.2.0",
-    "eslint": "^9.24.0",
-    "garou": "^0.9.5",
+    "eslint": "^9.27.0",
+    "garou": "^0.9.8",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3"
   },
