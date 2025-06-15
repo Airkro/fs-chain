@@ -22,16 +22,16 @@ importers:
         specifier: ^0.6.0
         version: 0.6.0(@bring-it/cli@0.10.0)
       '@nice-move/all-in-base':
-        specifier: ^0.4.19
+        specifier: ^0.4.29
         version: 0.4.29(@babel/core@7.27.4)(@typescript-eslint/parser@8.33.1(eslint@9.28.0)(typescript@5.8.3))(eslint@9.28.0)(garou@0.9.8(eslint@9.28.0)(typescript@5.8.3))(postcss@8.5.4)(prettier@3.5.3)(typescript@5.8.3)
       ava:
         specifier: ^6.2.0
         version: 6.4.0
       eslint:
-        specifier: ^9.24.0
+        specifier: ^9.28.0
         version: 9.28.0
       garou:
-        specifier: ^0.9.5
+        specifier: ^0.9.8
         version: 0.9.8(eslint@9.28.0)(typescript@5.8.3)
       prettier:
         specifier: ^3.5.3
