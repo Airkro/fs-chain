@@ -43,7 +43,7 @@
     "@bring-it/cli": "^0.10.0",
     "@bring-it/npm": "^0.6.0",
     "@nice-move/all-in-base": "^0.4.19",
-    "ava": "^6.2.0",
+    "ava": "^6.4.1",
     "eslint": "^9.24.0",
     "garou": "^0.9.5",
     "prettier": "^3.5.3",
