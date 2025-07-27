@@ -22,19 +22,19 @@ importers:
         specifier: ^0.6.0
         version: 0.6.1(@bring-it/cli@0.10.0)
       '@nice-move/all-in-base':
-        specifier: ^0.4.19
-        version: 0.4.33(@babel/core@7.28.0)(@typescript-eslint/parser@8.37.0(eslint@9.31.0)(typescript@5.8.3))(eslint@9.31.0)(garou@0.9.11(eslint@9.31.0)(typescript@5.8.3))(postcss@8.5.6)(prettier@3.6.2)(typescript@5.8.3)
+        specifier: ^0.5.3
+        version: 0.5.3(@babel/core@7.28.0)(@typescript-eslint/parser@8.37.0(eslint@9.31.0)(typescript@5.8.3))(eslint@9.31.0)(garou@0.9.11(eslint@9.31.0)(typescript@5.8.3))(postcss@8.5.6)(prettier@3.6.2)(typescript@5.8.3)
       ava:
         specifier: ^6.2.0
         version: 6.4.1
       eslint:
-        specifier: ^9.24.0
+        specifier: ^9.31.0
         version: 9.31.0
       garou:
-        specifier: ^0.9.5
+        specifier: ^0.9.11
         version: 0.9.11(eslint@9.31.0)(typescript@5.8.3)
       prettier:
-        specifier: ^3.5.3
+        specifier: ^3.6.2
         version: 3.6.2
       typescript:
         specifier: ^5.8.3
@@ -245,14 +245,14 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@nice-move/all-in-base@0.4.33':
-    resolution: {integrity: sha512-zfrkXx+DQZnxQP4DMq8WHt4PbXZGE3djY+36skwtie5VguqzciBV7Il6lt/xc8mkgrK61D0IRAswFAgsedMaXw==}
+  '@nice-move/all-in-base@0.5.3':
+    resolution: {integrity: sha512-E+5ceSvOWImygM41mXpa6avAM8UtNlcJhMKm9U1RWnrGRbQKvOldh8G/8dB2xDmzKzF3ElfPCjbWgMT7/eQMrQ==}
     engines: {node: ^20.19.2 || ^22.14.0 || ^24.0.0}
     hasBin: true
     peerDependencies:
-      eslint: ^9.29.0
+      eslint: ^9.30.1
       garou: ^0.9.11
-      prettier: ^3.5.3
+      prettier: ~3.5.3
       typescript: ~5.8.3
     peerDependenciesMeta:
       garou:
@@ -2322,7 +2322,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@nice-move/all-in-base@0.4.33(@babel/core@7.28.0)(@typescript-eslint/parser@8.37.0(eslint@9.31.0)(typescript@5.8.3))(eslint@9.31.0)(garou@0.9.11(eslint@9.31.0)(typescript@5.8.3))(postcss@8.5.6)(prettier@3.6.2)(typescript@5.8.3)':
+  '@nice-move/all-in-base@0.5.3(@babel/core@7.28.0)(@typescript-eslint/parser@8.37.0(eslint@9.31.0)(typescript@5.8.3))(eslint@9.31.0)(garou@0.9.11(eslint@9.31.0)(typescript@5.8.3))(postcss@8.5.6)(prettier@3.6.2)(typescript@5.8.3)':
     dependencies:
       '@nice-move/cli': 0.11.26
       '@nice-move/eslint-config-base': 0.12.25(@typescript-eslint/parser@8.37.0(eslint@9.31.0)(typescript@5.8.3))(eslint@9.31.0)(typescript@5.8.3)
