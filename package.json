@@ -40,7 +40,7 @@
     "fs-extra": "^11.3.0"
   },
   "devDependencies": {
-    "@bring-it/cli": "^0.10.0",
+    "@bring-it/cli": "^0.11.0",
     "@bring-it/npm": "^0.6.0",
     "@nice-move/all-in-base": "^0.4.19",
     "ava": "^6.2.0",

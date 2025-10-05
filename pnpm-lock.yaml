@@ -16,11 +16,11 @@ importers:
         version: 11.3.2
     devDependencies:
       '@bring-it/cli':
-        specifier: ^0.10.0
-        version: 0.10.0
+        specifier: ^0.11.0
+        version: 0.11.0
       '@bring-it/npm':
         specifier: ^0.6.0
-        version: 0.6.1(@bring-it/cli@0.10.0)
+        version: 0.6.1(@bring-it/cli@0.11.0)
       '@nice-move/all-in-base':
         specifier: ^0.4.19
         version: 0.4.33(@babel/core@7.28.4)(@typescript-eslint/parser@8.44.1(eslint@9.36.0)(typescript@5.9.2))(eslint@9.36.0)(garou@0.9.15(eslint@9.36.0)(typescript@5.9.2))(postcss@8.5.6)(prettier@3.6.2)(typescript@5.9.2)
@@ -131,9 +131,9 @@ packages:
     resolution: {integrity: sha512-bkFqkLhh3pMBUQQkpVgWDWq/lqzc2678eUyDlTBhRqhCHFguYYGM0Efga7tYk4TogG/3x0EEl66/OQ+WGbWB/Q==}
     engines: {node: '>=6.9.0'}
 
-  '@bring-it/cli@0.10.0':
-    resolution: {integrity: sha512-dYQRXLJ1fmH66rpeEjX9zDFcMqTiAshPkR7xHJQHoOXdQQWpbiV/MyDGJw2PhTCPuxLHaxh1MCZfctmq7M7nDw==}
-    engines: {node: '>=22.11.0 || ^20.18.1'}
+  '@bring-it/cli@0.11.0':
+    resolution: {integrity: sha512-8WxL1imhFseG3jr3Xmatoud2zzMu26vnfRAl5O15G+WJ1Q/oOOOOCAJDaZ+9It51oesICBFiSpeAFyDdISiRZw==}
+    engines: {node: '>=22.18.0'}
     hasBin: true
 
   '@bring-it/npm@0.6.1':
@@ -644,6 +644,10 @@ packages:
   cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
+
+  cliui@9.0.1:
+    resolution: {integrity: sha512-k7ndgKhwoQveBL+/1tqGJYNz097I7WOvwbmmU2AR5+magtbjPWQTS1C5vzGkBC8Ym8UWRzfKUzUUqFLypY4Q+w==}
+    engines: {node: '>=20'}
 
   code-excerpt@4.0.0:
     resolution: {integrity: sha512-xxodCmBen3iy2i0WtAK8FlFNrRzjUqjRsMfho58xT/wvZU1YTM3fCnRjcy1gJPMepaRlgm/0e6w8SpWHpn3/cA==}
@@ -2048,6 +2052,10 @@ packages:
     resolution: {integrity: sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ==}
     engines: {node: '>=12'}
 
+  wrap-ansi@9.0.2:
+    resolution: {integrity: sha512-42AtmgqjV+X1VpdOfyTGOYRi0/zsoLqtXQckTmqTeybT+BDIbM/Guxo7x3pE2vtpr1ok6xRqM9OpBe+Jyoqyww==}
+    engines: {node: '>=18'}
+
   write-file-atomic@6.0.0:
     resolution: {integrity: sha512-GmqrO8WJ1NuzJ2DrziEI2o57jKAVIQNf8a18W3nCYU3H7PNWqCCVTeH6/NQE93CIllIgQS98rrmVkYgTX9fFJQ==}
     engines: {node: ^18.17.0 || >=20.5.0}
@@ -2067,9 +2075,17 @@ packages:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
 
+  yargs-parser@22.0.0:
+    resolution: {integrity: sha512-rwu/ClNdSMpkSrUb+d6BRsSkLUq1fmfsY6TOpYzTwvwkg1/NRG85KBy3kq++A8LKQwX6lsu+aWad+2khvuXrqw==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=23}
+
   yargs@17.7.2:
     resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==}
     engines: {node: '>=12'}
+
+  yargs@18.0.0:
+    resolution: {integrity: sha512-4UEqdc2RYGHZc7Doyqkrqiln3p9X2DZVxaGbwhn2pi7MrRagKaOcIKe8L3OxYcbhXLgLFUS3zAYuQjKBQgmuNg==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=23}
 
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
@@ -2194,14 +2210,14 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
 
-  '@bring-it/cli@0.10.0':
+  '@bring-it/cli@0.11.0':
     dependencies:
       globby: 14.1.0
-      yargs: 17.7.2
+      yargs: 18.0.0
 
-  '@bring-it/npm@0.6.1(@bring-it/cli@0.10.0)':
+  '@bring-it/npm@0.6.1(@bring-it/cli@0.11.0)':
     dependencies:
-      '@bring-it/cli': 0.10.0
+      '@bring-it/cli': 0.11.0
 
   '@eslint-community/eslint-plugin-eslint-comments@4.5.0(eslint@9.36.0)':
     dependencies:
@@ -2837,6 +2853,12 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
+
+  cliui@9.0.1:
+    dependencies:
+      string-width: 7.2.0
+      strip-ansi: 7.1.2
+      wrap-ansi: 9.0.2
 
   code-excerpt@4.0.0:
     dependencies:
@@ -4397,6 +4419,12 @@ snapshots:
       string-width: 5.1.2
       strip-ansi: 7.1.2
 
+  wrap-ansi@9.0.2:
+    dependencies:
+      ansi-styles: 6.2.3
+      string-width: 7.2.0
+      strip-ansi: 7.1.2
+
   write-file-atomic@6.0.0:
     dependencies:
       imurmurhash: 0.1.4
@@ -4410,6 +4438,8 @@ snapshots:
 
   yargs-parser@21.1.1: {}
 
+  yargs-parser@22.0.0: {}
+
   yargs@17.7.2:
     dependencies:
       cliui: 8.0.1
@@ -4419,5 +4449,14 @@ snapshots:
       string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 21.1.1
+
+  yargs@18.0.0:
+    dependencies:
+      cliui: 9.0.1
+      escalade: 3.2.0
+      get-caller-file: 2.0.5
+      string-width: 7.2.0
+      y18n: 5.0.8
+      yargs-parser: 22.0.0
 
   yocto-queue@0.1.0: {}
