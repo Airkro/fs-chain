@@ -36,7 +36,7 @@
     "test": "ava --fail-fast --no-worker-threads -c 1"
   },
   "dependencies": {
-    "chalk": "^5.4.1",
+    "chalk": "^5.6.2",
     "fs-extra": "^11.3.0"
   },
   "devDependencies": {
