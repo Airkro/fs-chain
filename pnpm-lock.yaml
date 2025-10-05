@@ -19,8 +19,8 @@ importers:
         specifier: ^0.10.0
         version: 0.10.0
       '@bring-it/npm':
-        specifier: ^0.6.0
-        version: 0.6.1(@bring-it/cli@0.10.0)
+        specifier: ^0.9.0
+        version: 0.9.0(@bring-it/cli@0.10.0)
       '@nice-move/all-in-base':
         specifier: ^0.4.19
         version: 0.4.33(@babel/core@7.28.4)(@typescript-eslint/parser@8.44.1(eslint@9.36.0)(typescript@5.9.2))(eslint@9.36.0)(garou@0.9.15(eslint@9.36.0)(typescript@5.9.2))(postcss@8.5.6)(prettier@3.6.2)(typescript@5.9.2)
@@ -136,12 +136,12 @@ packages:
     engines: {node: '>=22.11.0 || ^20.18.1'}
     hasBin: true
 
-  '@bring-it/npm@0.6.1':
-    resolution: {integrity: sha512-E3eXnJTfFaRxS76eLaoLi0/M89bxfxIfpYOojppqtboohAimtJitwzlXOooJcDvnMEjpZ4rWxB4gQwwX/Rc1KA==}
-    engines: {node: '>=22.11.0 || ^20.18.1', npm: ^10.5.0, pnpm: ^10.12.1}
+  '@bring-it/npm@0.9.0':
+    resolution: {integrity: sha512-JBY2jXYw1UxoBJFAUpt26l6qVJ/XPbQfRQ2A165CE9xUG37bZsJpRL8wc+nZB3sCOZSalhyjMMg4xdvZFfnjOw==}
+    engines: {node: '>=22.18.0', npm: ^10.5.0, pnpm: ^10.15.0}
     hasBin: true
     peerDependencies:
-      '@bring-it/cli': ^0.10.0
+      '@bring-it/cli': ^0.11.0
 
   '@eslint-community/eslint-plugin-eslint-comments@4.5.0':
     resolution: {integrity: sha512-MAhuTKlr4y/CE3WYX26raZjy+I/kS2PLKSzvfmDCGrBLTFHOYwqROZdr4XwPgXwX3K9rjzMr4pSmUWGnzsUyMg==}
@@ -2199,7 +2199,7 @@ snapshots:
       globby: 14.1.0
       yargs: 17.7.2
 
-  '@bring-it/npm@0.6.1(@bring-it/cli@0.10.0)':
+  '@bring-it/npm@0.9.0(@bring-it/cli@0.10.0)':
     dependencies:
       '@bring-it/cli': 0.10.0
 

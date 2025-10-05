@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@bring-it/cli": "^0.10.0",
-    "@bring-it/npm": "^0.6.0",
+    "@bring-it/npm": "^0.9.0",
     "@nice-move/all-in-base": "^0.4.19",
     "ava": "^6.2.0",
     "eslint": "^9.24.0",
