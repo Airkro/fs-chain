@@ -6,11 +6,11 @@ import chalk from 'chalk';
 
 const Require = createRequire(`${process.cwd()}/`);
 
-function pure(path) {
+function pure(path: string): string {
   return path.startsWith('file:') ? fileURLToPath(path) : path;
 }
 
-export function resolver(path, root = process.cwd()) {
+export function resolver(path: string, root: string = process.cwd()): string {
   if (path.startsWith('~')) {
     return Require.resolve(path.replace(/^~/, ''));
   }
@@ -27,11 +27,15 @@ export function resolver(path, root = process.cwd()) {
 }
 
 export class Base {
+  action: Promise<unknown>;
+
+  temp?: unknown;
+
   constructor() {
     this.action = Promise.resolve();
   }
 
-  onDone(callback = (io) => io) {
+  modify(callback: (io: unknown) => unknown = (io) => io): this {
     this.action = this.action
       .then((data) => {
         this.temp = data;
@@ -43,7 +47,7 @@ export class Base {
     return this;
   }
 
-  onFail(callback = () => this.temp) {
+  onFail(callback: () => unknown = () => this.temp): this {
     this.action = this.action
       .then((data) => {
         this.temp = data;
@@ -56,26 +60,25 @@ export class Base {
   }
 
   // eslint-disable-next-line unicorn/no-thenable
-  then(callback) {
+  then(callback: (value: unknown) => unknown): Promise<unknown> {
     return this.action.then(callback);
   }
 
-  catch(callback) {
+  catch(callback: (reason: unknown) => unknown): Promise<unknown> {
     return this.action.catch(callback);
   }
 
-  finally(callback) {
+  finally(callback: () => void): Promise<unknown> {
     return this.action.finally(callback);
   }
 }
 
-/* eslint-disable class-methods-use-this */
 class Logger {
-  okay(...message) {
+  okay(...message: unknown[]): void {
     console.log(chalk.green('✔'), ...message);
   }
 
-  fail(...message) {
+  fail(...message: unknown[]): void {
     console.log(chalk.red('✘'), ...message);
   }
 }

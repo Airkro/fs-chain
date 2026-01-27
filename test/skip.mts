@@ -1,12 +1,11 @@
-'use strict';
+import test from 'ava';
 
-const test = require('ava');
-const { Text: Chain } = require('../lib/index.mjs');
+import { Text as Chain } from '../src/index.mts';
 
 test.serial('error', async (t) => {
   const data = await new Chain()
-    .onDone(() => '123456')
-    .onDone(() => {
+    .modify(() => '123456')
+    .modify(() => {
       throw new Error('error');
     })
     .onFail();
@@ -16,30 +15,30 @@ test.serial('error', async (t) => {
 
 test.serial('next error', async (t) => {
   const message = await new Chain()
-    .onDone(() => {
+    .modify(() => {
       throw new Error('first');
     })
-    .onDone(() => {
+    .modify(() => {
       throw new Error('second');
     })
-    .catch((error) => error.message);
+    .catch((error: unknown) => (error as Error).message);
 
   t.is(message, 'first');
 });
 
 test.serial('first error', async (t) => {
   const message = await new Chain()
-    .onDone(() => {
+    .modify(() => {
       throw new Error('first');
     })
     .onFail()
-    .onDone(() => {
+    .modify(() => {
       throw new Error('second');
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       t.log(error);
 
-      return error.message;
+      return (error as Error).message;
     });
 
   t.is(message, 'second');

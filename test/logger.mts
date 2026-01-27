@@ -1,23 +1,23 @@
-'use strict';
+import { join } from 'node:path';
+import { Worker } from 'node:worker_threads';
 
-const { join } = require('node:path');
-const { Worker } = require('node:worker_threads');
-const test = require('ava');
-const { Text: Chain } = require('../lib/index.mjs');
+import test from 'ava';
+
+import { Text as Chain } from '../src/index.mts';
 
 test('empty', (t) => {
   try {
     new Chain().logger();
   } catch (error) {
-    t.is(error.message, 'message cannot be empty');
+    t.is((error as Error).message, 'message cannot be empty');
   }
 });
 
 test('message', async (t) => {
-  const io = new Promise((resolve) => {
-    const worker = new Worker(join(__dirname, 'fixture/logger.cjs'), {
+  const io = new Promise<void>((resolve) => {
+    const worker = new Worker(join(import.meta.dirname, 'fixture/logger.mts'), {
       stdout: true,
-      env: { FORCE_COLOR: 0 },
+      env: { FORCE_COLOR: '0' },
     });
 
     let count = 0;

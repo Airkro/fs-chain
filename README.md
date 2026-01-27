@@ -20,11 +20,11 @@ npm install fs-chain --save-dev
 
 ## Usage
 
-```cjs
-const { Text, Json } = require('fs-chain');
+```mjs
+import { Text, Json } from 'fs-chain';
 
 new Text() // create file
-  .onDone(() => 'text:sample')
+  .modify(() => 'text:sample')
   .output('./filename');
 
 new Json() // copy file
@@ -33,12 +33,12 @@ new Json() // copy file
 
 new Text() // edit file
   .source('./filename')
-  .onDone((data) => data.trim())
+  .modify((data) => data.trim())
   .output();
 
 new Json() // transfer file
   .source('./old-filename')
-  .onDone((data) => data.value)
+  .modify((data) => data.value)
   .output('./new-filename');
 
 new Json().source('~qss'); // require.resolve
@@ -48,22 +48,18 @@ new Text()
     // skip following step
     throw new Error('skip');
   })
-  .onDone(() => {
+  .modify(() => {
     // other step
   });
 
 new Text()
   .logger('testing 1') // √ testing 1
-  .onDone(() => {
+  .modify(() => {
     throw new Error('fail');
   })
   .logger('testing 2'); // × testing 2
 
 new Text(process.cwd()).source('./');
-new Text(__dirname).source('./');
-new Text(__filename).source('../');
-```
 
-```mjs
 new Text(import.meta.url).source('../');
 ```

@@ -1,8 +1,17 @@
-import { Base, logger, resolver } from './utils.mjs';
+import { Base, logger, resolver } from './utils.mts';
 
-export function Creator({ read, write }) {
+export function Creator<T, O = unknown>(options: {
+  read: (path: string) => Promise<T>;
+  write: (path: string, data: T, option?: O) => Promise<void>;
+}) {
   return class Chain extends Base {
-    constructor(root) {
+    root?: string;
+
+    option?: O;
+
+    sourcePath?: string;
+
+    constructor(root?: string) {
       super();
 
       if (root) {
@@ -10,7 +19,7 @@ export function Creator({ read, write }) {
       }
     }
 
-    config(option) {
+    config(option: O): this {
       if (option !== undefined) {
         this.option = option;
       }
@@ -18,37 +27,39 @@ export function Creator({ read, write }) {
       return this;
     }
 
-    source(path, root = this.root) {
+    source(path: string, root = this.root): this {
       if (!path) {
         throw new Error('path cannot be empty');
       }
 
       this.action = this.action
         .then(() => {
-          this.source = resolver(path, root);
+          this.sourcePath = resolver(path, root);
         })
-        .then(() => read(this.source));
+        .then(() =>
+          this.sourcePath ? options.read(this.sourcePath) : undefined,
+        );
 
       return this;
     }
 
-    output(path, root = this.root) {
+    output(path = this.sourcePath, root = this.root): this {
       this.action = this.action.then((data) => {
-        const io = resolver(path === undefined ? this.source : path, root);
+        const io = path ? resolver(path, root) : undefined;
 
         if (!io) {
           throw new Error('path cannot be empty');
         }
 
-        this.source = io;
+        this.sourcePath = io;
 
-        return write(io, data, this.option).then(() => data);
+        return options.write(io, data as T, this.option).then(() => data);
       });
 
       return this;
     }
 
-    logger(...message) {
+    logger(...message: unknown[]): this {
       if (message.length === 0) {
         throw new Error('message cannot be empty');
       }

@@ -1,10 +1,8 @@
-'use strict';
-
-const { Text: Chain } = require('../../lib/index.mjs');
+import { Text as Chain } from '../../src/index.mts';
 
 new Chain()
   .logger('testing 1')
-  .onDone(() => {
+  .modify(() => {
     throw new Error('fail');
   })
   .logger('testing 2')

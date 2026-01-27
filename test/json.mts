@@ -1,10 +1,8 @@
 import test from 'ava';
 
-import { Json as Chain } from '../lib/index.mjs';
+import { Json as Chain } from '../src/index.mts';
 
-import utils from './helper/utils.cjs';
-
-const { remove, readJson: read, readText } = utils;
+import { remove, readJson as read, readText } from './helper/utils.mts';
 
 const initFile = './.cache/init.json';
 const newFile = './.cache/new.json';
@@ -15,12 +13,15 @@ const changedData = { changed: 'sample' };
 remove(initFile);
 remove(newFile);
 
-function convert(data) {
-  return Object.fromEntries(Object.entries(data).reverse());
+function convert(data: Record<string, unknown>) {
+  return Object.fromEntries(Object.entries(data).toReversed()) as Record<
+    string,
+    unknown
+  >;
 }
 
 test.serial('create', async (t) => {
-  await new Chain().onDone(() => initData).output(initFile);
+  await new Chain().modify(() => initData).output(initFile);
   t.deepEqual(read(initFile), initData);
 });
 
@@ -32,23 +33,26 @@ test.serial('copy', async (t) => {
 test.serial('edit', async (t) => {
   await new Chain()
     .source(initFile)
-    .onDone(() => changedData)
-    .output();
+    .modify(() => changedData)
+    .output(initFile);
   t.deepEqual(read(initFile), changedData);
 });
 
 test.serial('transfer', async (t) => {
-  await new Chain().source(initFile).onDone(convert).output(newFile);
+  await new Chain()
+    .source(initFile)
+    .modify((data) => convert(data as Record<string, unknown>))
+    .output(newFile);
   t.deepEqual(convert(read(initFile)), read(newFile));
 });
 
 test.serial('nesting', async (t) => {
   await new Chain()
     .source(initFile)
-    .onDone(convert)
-    .output()
-    .onDone(convert)
-    .onDone(convert)
+    .modify((data) => convert(data as Record<string, unknown>))
+    .output(initFile)
+    .modify((data) => convert(data as Record<string, unknown>))
+    .modify((data) => convert(data as Record<string, unknown>))
     .output(newFile);
 
   t.deepEqual(read(initFile), read(newFile));
@@ -56,7 +60,7 @@ test.serial('nesting', async (t) => {
 
 test.serial('pretty', async (t) => {
   await new Chain()
-    .onDone(() => initData)
+    .modify(() => initData)
     .config({ pretty: true })
     .output(initFile);
 
