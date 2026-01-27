@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, rmSync } from 'node:fs';
-import { resolver } from '../../src/index.mts';
+import { resolver } from '../../src/utils.mts';
 
 export const exists = (path: string, root?: string) =>
   existsSync(resolver(path, root));

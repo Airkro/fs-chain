@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import { Text as Chain } from '../src/index.mts';
+import { Chain } from '../src/index.mts';
 
 import { remove, readText as read } from './helper/utils.mts';
 
@@ -48,6 +48,7 @@ test.serial('nesting', async (t) => {
     .source(initFile)
     .modify((data) => convert(data as string))
     .output(initFile)
+    .source(initFile)
     .modify((data) => convert(data as string))
     .modify((data) => convert(data as string))
     .output(newFile);

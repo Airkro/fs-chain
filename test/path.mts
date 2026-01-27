@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import { Text as Chain } from '../src/index.mts';
+import { Chain } from '../src/index.mts';
 
 import { readText as read } from './helper/utils.mts';
 
@@ -63,6 +63,6 @@ test('module.id', async (t) => {
 
   await t.throwsAsync(() => new Chain().source('~react').action, {
     instanceOf: Error,
-    code: 'MODULE_NOT_FOUND',
+    code: 'ERR_MODULE_NOT_FOUND',
   });
 });

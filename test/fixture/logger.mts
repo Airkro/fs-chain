@@ -1,4 +1,4 @@
-import { Text as Chain } from '../../src/index.mts';
+import { Chain } from '../../src/index.mts';
 
 new Chain()
   .logger('testing 1')

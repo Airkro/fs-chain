@@ -1,77 +1,125 @@
-import { mkdir } from 'node:fs/promises';
-import { dirname } from 'node:path';
+import { logger, resolver, readFile, writeFile } from './utils.mts';
 
-import { Creator } from './creator.mts';
+export class Chain {
+  private chain: Promise<unknown>;
 
-async function ensureDir(path: string): Promise<void> {
-  await mkdir(dirname(path), { recursive: true });
+  private fallbackValue?: unknown;
+
+  root?: string;
+
+  option?: { pretty?: boolean };
+
+  sourcePath?: string;
+
+  constructor(root?: string) {
+    this.chain = Promise.resolve();
+    this.root = root;
+  }
+
+  get action(): Promise<unknown> {
+    return this.chain;
+  }
+
+  private saveTemp(data: unknown): unknown {
+    this.fallbackValue = data;
+
+    return data;
+  }
+
+  modify(callback: (io: unknown) => unknown = (io) => io): this {
+    this.chain = this.chain.then(this.saveTemp.bind(this)).then(callback);
+
+    return this;
+  }
+
+  onFail(callback: () => unknown = () => this.fallbackValue): this {
+    this.chain = this.chain.then(this.saveTemp.bind(this)).catch(callback);
+
+    return this;
+  }
+
+  // eslint-disable-next-line unicorn/no-thenable
+  then(callback: (value: unknown) => unknown): Promise<unknown> {
+    return this.chain.then(callback);
+  }
+
+  catch(callback: (reason: unknown) => unknown): Promise<unknown> {
+    return this.chain.catch(callback);
+  }
+
+  finally(callback: () => void): Promise<unknown> {
+    return this.chain.finally(callback);
+  }
+
+  config(option: { pretty?: boolean }): this {
+    this.option = option;
+
+    return this;
+  }
+
+  source(path: string, root = this.root): this {
+    if (!path) {
+      throw new Error('path cannot be empty');
+    }
+
+    this.chain = this.chain
+      .then(() => {
+        this.sourcePath = resolver(path, root);
+      })
+      .then(async () =>
+        this.sourcePath ? readFile(this.sourcePath) : undefined,
+      );
+
+    return this;
+  }
+
+  output(path = this.sourcePath, root = this.root): this {
+    this.chain = this.chain.then((data) => {
+      const outputPath = path ? resolver(path, root) : undefined;
+
+      if (!outputPath) {
+        throw new Error('path cannot be empty');
+      }
+
+      this.sourcePath = outputPath;
+
+      return writeFile(outputPath, data as string).then(() => data);
+    });
+
+    return this;
+  }
+
+  encode(): this {
+    this.chain = this.chain.then((data) =>
+      JSON.stringify(data, undefined, this.option?.pretty ? 2 : undefined),
+    );
+
+    return this;
+  }
+
+  decode<T>(): this {
+    this.chain = this.chain.then((data) => JSON.parse(data as string) as T);
+
+    return this;
+  }
+
+  logger(...message: unknown[]): this {
+    if (message.length === 0) {
+      throw new Error('message cannot be empty');
+    }
+
+    this.chain = this.chain.then(
+      (data) => {
+        logger.okay(...message);
+
+        return data;
+      },
+      (error) => {
+        logger.fail(...message);
+        throw error;
+      },
+    );
+
+    return this;
+  }
 }
-
-async function readFile(path: string): Promise<string> {
-  const { readFile: fsReadFile } = await import('node:fs/promises');
-
-  return fsReadFile(path, 'utf8');
-}
-
-async function readJson<T = unknown>(path: string): Promise<T> {
-  const content = await readFile(path);
-
-  return JSON.parse(content) as T;
-}
-
-async function outputFile(
-  path: string,
-  data: string | Buffer,
-  options: { encoding?: BufferEncoding },
-): Promise<void> {
-  await ensureDir(path);
-  const { writeFile } = await import('node:fs/promises');
-
-  return writeFile(path, data, options);
-}
-
-async function outputJson<T>(
-  path: string,
-  data: T,
-  options?: { spaces?: number },
-): Promise<void> {
-  const content = JSON.stringify(data, null, options?.spaces);
-  await outputFile(path, content, { encoding: 'utf8' });
-}
-
-export { Creator };
-
-function readText(path: string): Promise<string> {
-  return readFile(path);
-}
-
-function writeText(path: string, data: string): Promise<void> {
-  return outputFile(path, data, { encoding: 'utf8' });
-}
-
-function writeJson<T>(
-  path: string,
-  data: T,
-  option?: { pretty?: boolean },
-): Promise<void> {
-  return outputJson(path, data, option?.pretty ? { spaces: 2 } : undefined);
-}
-
-export const Text = Creator<string>({
-  read: readText,
-  write: writeText,
-});
-
-export const Json = Creator<unknown, { pretty?: boolean }>({
-  read: readJson,
-  write: writeJson,
-});
-
-export const TextToJson = Creator<unknown, { pretty?: boolean }>({
-  read: readText,
-  write: writeJson,
-});
-
-export const JsonToText = Creator<string>({ read: readJson, write: writeText });
-
-export { resolver } from './utils.mts';

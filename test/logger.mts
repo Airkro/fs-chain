@@ -3,7 +3,7 @@ import { Worker } from 'node:worker_threads';
 
 import test from 'ava';
 
-import { Text as Chain } from '../src/index.mts';
+import { Chain } from '../src/index.mts';
 
 test('empty', (t) => {
   try {

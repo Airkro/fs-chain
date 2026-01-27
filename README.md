@@ -21,45 +21,76 @@ npm install fs-chain --save-dev
 ## Usage
 
 ```mjs
-import { Text, Json } from 'fs-chain';
+import { Chain } from 'fs-chain';
 
-new Text() // create file
-  .modify(() => 'text:sample')
-  .output('./filename');
+// Create file
+new Chain().modify(() => 'text:sample').output('./filename.txt');
 
-new Json() // copy file
-  .source('./old-filename')
-  .output('./new-filename');
+// Copy file
+new Chain().source('./old-file.txt').output('./new-file.txt');
 
-new Text() // edit file
-  .source('./filename')
+// Edit file
+new Chain()
+  .source('./filename.txt')
   .modify((data) => data.trim())
   .output();
 
-new Json() // transfer file
-  .source('./old-filename')
-  .modify((data) => data.value)
-  .output('./new-filename');
+// Create JSON file
+new Chain()
+  .modify(() => ({ key: 'value' }))
+  .encode()
+  .output('./data.json');
 
-new Json().source('~qss'); // require.resolve
+// Copy JSON file
+new Chain()
+  .source('./old-data.json')
+  .decode()
+  .modify((data) => data.key)
+  .encode()
+  .output('./new-data.json');
 
-new Text()
-  .onFail(() => {
-    // skip following step
-    throw new Error('skip');
-  })
+// Pretty JSON output
+new Chain()
+  .modify(() => ({ key: 'value' }))
+  .config({ pretty: true })
+  .encode()
+  .output('./pretty.json');
+
+// Resolve module path (~ prefix)
+new Chain().source('~/some-module');
+
+// Error handling with onFail
+new Chain()
+  .modify(() => 'data')
   .modify(() => {
-    // other step
+    throw new Error('error');
+  })
+  .onFail((data) => {
+    // data is the last successful value: 'data'
+    console.log('Failed but recovered:', data);
   });
 
-new Text()
-  .logger('testing 1') // √ testing 1
+// Logging
+new Chain()
+  .logger('testing 1') // ✔ testing 1
   .modify(() => {
     throw new Error('fail');
   })
-  .logger('testing 2'); // × testing 2
+  .logger('testing 2'); // ✘ testing 2
 
-new Text(process.cwd()).source('./');
+// Custom root directory
+new Chain(process.cwd()).source('./');
 
-new Text(import.meta.url).source('../');
+// Root from import.meta.url
+new Chain(import.meta.url).source('../');
+
+// Promise-like chaining
+await new Chain()
+  .source('./data.json')
+  .decode()
+  .then((data) => {
+    console.log('Loaded:', data);
+
+    return data;
+  });
 ```
