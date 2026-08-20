@@ -4,8 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-pnpmfileChecksum: sha256-mS1QIEGtFQ28TeF9birCFL18c0lFsb9V6ngFKSiJCGo=
-
 importers:
 
   .:
@@ -18,8 +16,8 @@ importers:
         specifier: ^0.11.1
         version: 0.11.1
       '@bring-it/npm':
-        specifier: ^0.9.3
-        version: 0.9.3(@bring-it/cli@0.11.1)
+        specifier: ^0.9.6
+        version: 0.9.6(@bring-it/cli@0.11.1)
       '@nice-move/all-in-base':
         specifier: ^0.6.34
         version: 0.6.34(@babel/core@7.28.4)(@typescript-eslint/parser@8.53.1(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(garou@0.9.17(eslint@9.39.2)(typescript@5.9.3))(postcss@8.5.6)(prettier@3.8.1)(typescript@5.9.3)
@@ -135,12 +133,12 @@ packages:
     engines: {node: '>=22.18.0'}
     hasBin: true
 
-  '@bring-it/npm@0.9.3':
-    resolution: {integrity: sha512-nNePVVsVH56dEvzInz7toTNxiK6yTs1vu2JKlXN7IwWshOOmYI8wc8MjTjk1/nN4XLAH/abv3AgnQGPQmCdm6w==}
-    engines: {node: '>=22.18.0', npm: ^10.5.0, pnpm: ^10.20.0}
+  '@bring-it/npm@0.9.6':
+    resolution: {integrity: sha512-YXum1yFAxtgjJLKRzliRh1+oM9xpS84N4S5NE9cK17Vs0vBTtinLV5dNNDeC9uAGgCazUH9h2vPDWWGfsKGohg==}
+    engines: {node: '>=22.22.2', npm: ^11.0.0, pnpm: ^10.33.0}
     hasBin: true
     peerDependencies:
-      '@bring-it/cli': ^0.11.1
+      '@bring-it/cli': ^0.11.2
 
   '@eslint-community/eslint-plugin-eslint-comments@4.6.0':
     resolution: {integrity: sha512-2EX2bBQq1ez++xz2o9tEeEQkyvfieWgUFMH4rtJJri2q0Azvhja3hZGXsjPXs31R4fQkZDtWzNDDK2zQn5UE5g==}
@@ -969,6 +967,7 @@ packages:
   eslint@9.39.2:
     resolution: {integrity: sha512-LEyamqS7W5HB3ujJyvi0HQK/dtVINZvd5mAAp9eT5S/ujByGjiZLCzPcHVzuXbpJDJF/cxwHlfceVUDZ2lnSTw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -1142,6 +1141,7 @@ packages:
 
   glob@10.5.0:
     resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   globals@14.0.0:
@@ -2042,6 +2042,7 @@ packages:
   tar@7.5.6:
     resolution: {integrity: sha512-xqUeu2JAIJpXyvskvU3uvQW8PAmHrtXp2KDuMJwQqW8Sqq0CaZBAQ+dKS3RBXVhU4wC5NjAdKrmh84241gO9cA==}
     engines: {node: '>=18'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   temp-dir@3.0.0:
     resolution: {integrity: sha512-nHc6S/bwIilKHNRgK/3jlhDoIHcp45YgyiwcAk46Tr0LfEqGBVpmiAyuiuxeVE44m3mXnEeVhaipLOEWmH+Njw==}
@@ -2359,7 +2360,7 @@ snapshots:
       globby: 15.0.0
       yargs: 18.0.0
 
-  '@bring-it/npm@0.9.3(@bring-it/cli@0.11.1)':
+  '@bring-it/npm@0.9.6(@bring-it/cli@0.11.1)':
     dependencies:
       '@bring-it/cli': 0.11.1
 
